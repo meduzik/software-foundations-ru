@@ -1,84 +1,87 @@
-(** * Preface *)
+(** * Предисловие *)
 
 (* ################################################################# *)
-(** * Welcome *)
+(** * Приветствие *)
 
-(** This is the entry point in a series of electronic textbooks on
-    various aspects of _Software Foundations_ -- the mathematical
-    underpinnings of reliable software.  Topics in the series include
-    basic concepts of logic, computer-assisted theorem proving, the
-    Coq proof assistant, functional programming, operational
-    semantics, logics for reasoning about programs, and static type
-    systems.  The exposition is intended for a broad range of readers,
-    from advanced undergraduates to PhD students and researchers.  No
-    specific background in logic or programming languages is assumed,
-    though a degree of mathematical maturity will be helpful.
+(** Это - начало серии электронных книг о различных аспектах _Основ
+    программного обеспечения_ -- математического обоснования для 
+    надежных программ. Эта серия включает такие темы как основные 
+    понятия логики, доказательные вычисления, средство доказательства 
+    теорем Coq, функциональное программирование, операционная 
+    семантика, логика рассуждений о программах, статические системы 
+    типов. Повествование предназначено для широкой аудитории, 
+    от продвинутых студентов до аспирантов и исследователей. Особых 
+    познаний в логике или языках программирования не требуется, 
+    хотя некоторая степень математической интуиции будет полезной.
+    
+    Принципиальное новшество этой серии состоит в том, что она 
+    полностью формализована и проверена при помощи компьютера: 
+    каждый текст является программой для Coq. Книги стоит читать 
+    параллельно (или прямо внутри) интерактивной сессии Coq. 
+    Большинство упражнений предназначены для выполнения в Coq.
 
-    The principal novelty of the series is that it is one hundred
-    percent formalized and machine-checked: each text is literally a
-    script for Coq.  The books are intended to be read alongside (or
-    inside) an interactive session with Coq.  All the details in the
-    text are fully formalized in Coq, and most of the exercises are
-    designed to be worked using Coq.
+    Файлы каждой книги организованы в последовательность основных глав,
+    предназначенных для изучения в течение одного семестра, и некоторое
+    число отдельных глав покрывающих дополнительные темы. Все базовые
+    главы подходят и для старшекурсников, и для выпускников.
 
-    The files in each book are organized into a sequence of core
-    chapters, covering about one semester's worth of material and
-    organized into a coherent linear narrative, plus a number of
-    "offshoot" chapters covering additional topics.  All the core
-    chapters are suitable for both upper-level undergraduate and
-    graduate students.
-
-    This book, _Logical Foundations_, lays groundwork for the others,
-    introducing the reader to the basic ideas of functional
-    programming, constructive logic, and the Coq proof assistant. *)
-
+    Эта книга, _Основы логики_, закладывает фундамент для прочих,
+    предоставляя для читателя введение в функциональное
+    программирование, конструктивную логику и средство доказательства 
+    теорем Coq.
 
 (* ################################################################# *)
-(** * Overview *)
+(** * Обзор *)
 
-(** Building reliable software is really hard.  The scale and
-    complexity of modern systems, the number of people involved, and
-    the range of demands placed on them make it extremely difficult to
-    build software that is even more-or-less correct, much less 100%%
-    correct.  At the same time, the increasing degree to which
-    information processing is woven into every aspect of society
-    greatly amplifies the cost of bugs and insecurities.
+(** Создание надежного программного обеспечения - очень сложная задача.
+    Масштаб и сложность современных систем, число людей, вовлеченных
+    в их создание, а также диапазон возлагаемых на них требований
+    делают невероятно трудным написание относительно правильных
+    программ, не говоря уже о правильных на 100%. В то же время, 
+    степень вовлечения программной обработки информации в каждый аспект
+    жизни многократно увеличивает цену ошибок и уязвимостей.
 
-    Computer scientists and software engineers have responded to these
-    challenges by developing a whole host of techniques for improving
-    software reliability, ranging from recommendations about managing
-    software projects teams (e.g., extreme programming) to design
-    philosophies for libraries (e.g., model-view-controller,
-    publish-subscribe, etc.) and programming languages (e.g.,
-    object-oriented programming, aspect-oriented programming,
-    functional programming, ...) to mathematical techniques for
-    specifying and reasoning about properties of software and tools
-    for helping validate these properties.  The _Software Foundations_
-    series is focused on this last set of techniques.
+    Разработчики программного обеспечения и информатики-теоретики 
+    подошли к этим проблемам, разработав множество техник для 
+    увеличения надежности, от рекомендаций по управлению командами,
+    разрабатывающими ПО (например, экстремальное программирование) до
+    философии проектирования библиотек (паттерны проектирования, такие
+    как MVC, pub-sub и т.д.) и языков программирования (объектно-
+    ориентированные, аспектно-ориентированные, функциональные...)
+    и математические техники для указания и рассуждения о свойствах ПО,
+    а также инструменты для проверки этих свойств. _Основы
+    программного обеспечения_ концентрируются именно на последнем 
+    наборе техник.
 
-    The text is constructed around three conceptual threads:
+    Текст построен вокруг трех основных тем:
 
-    (1) basic tools from _logic_ for making and justifying precise
-        claims about programs;
+    (1) основные инструменты _логики_ для выдвижения и доказательства
+        утверждений о программах
 
-    (2) the use of _proof assistants_ to construct rigorous logical
-        arguments;
+    (2) использование _средств доказательства_ для построения строгих
+        доказательств
 
-    (3) _functional programming_, both as a method of programming that
-        simplifies reasoning about programs and as a bridge between
-        programming and logic.
+    (3) _функциональное программирование_, используемое и как метод для
+        написания программ, и как связующее звено между 
+		программированием и логикой.
 
-    Some suggestions for further reading can be found in the
-    [Postscript] chapter.  Bibliographic information for all
-    cited works can be found in the file [Bib]. *)
+    Некоторые предложения для дальнейшего изучения можно найти в главе
+    [Послесловие (Postscript)]. Библиографическая информация находится 
+    в файле [Bib] *)
 
 (* ================================================================= *)
-(** ** Logic *)
+(** ** Логика *)
 
-(** Logic is the field of study whose subject matter is _proofs_ --
-    unassailable arguments for the truth of particular propositions.
-    Volumes have been written about the central role of logic in
-    computer science.  Manna and Waldinger called it "the calculus of
+(** Логика - это область, чьим объектом изучения являются
+    _доказательства_ - неопровержимые свидетельства истинности 
+    определенных утверждений. О центральной роли логики в информатике
+    были написаны целые тома. 
+  
+    Прим. перев.: оригинал приводит цитаты о важности логики, которые
+    автор перевода не считает нужным и возможным переводить, чтобы
+    не исказить смысл, поэтому приводит как в оригинале:
+
+    Manna and Waldinger called it "the calculus of
     computer science," while Halpern et al.'s paper _On the Unusual
     Effectiveness of Logic in Computer Science_ catalogs scores of
     ways in which logic offers critical tools and insights.  Indeed,
@@ -88,272 +91,275 @@
     much of the impetus for the development of logic during the past
     one hundred years came from mathematics."
 
-    In particular, the fundamental tools of _inductive proof_ are
-    ubiquitous in all of computer science.  You have surely seen them
-    before, perhaps in a course on discrete math or analysis of
-    algorithms, but in this course we will examine them more deeply
-    than you have probably done so far. *)
+    В особенности, основные инструменты _доказательства по индукции_
+    повсеместно используются в информатике. Вы конечно же видели их 
+    прежде, в курсе дискретной математики или анализа алгоритмов, но
+    в этом курсе мы, вероятно, изучим их более подробно, чем вы делали 
+    это прежде. *)
 
 (* ================================================================= *)
-(** ** Proof Assistants *)
+(** ** Средства доказательства *)
 
-(** The flow of ideas between logic and computer science has not been
-    unidirectional: CS has also made important contributions to logic.
-    One of these has been the development of software tools for
-    helping construct proofs of logical propositions.  These tools
-    fall into two broad categories:
+(** Информатика не только заимствует идеи из логики, но также и сама
+    сделала важный вклад в логику. Одним из ее достижений является 
+    разработка программных средств для построения доказательств
+    логических высказываний. Эти инструменты разделяются на две широких
+    категории:
 
-       - _Automated theorem provers_ provide "push-button" operation:
-         you give them a proposition and they return either _true_ or
-         _false_ (or, sometimes, _don't know: ran out of time_).
-         Although their capabilities are still limited to specific
-         domains, they have matured tremendously in recent years and
-         are used now in a multitude of settings.  Examples of such
-         tools include SAT solvers, SMT solvers, and model checkers.
+      - _Иснтрументы автоматического доказательства (Automated theorem 
+        provers)_ предоставляют "кнопку, которую надо нажать" - вы
+        задаете утверждение и они возвращают ответ - _истина_ или 
+        _ложь_(или, иногда, _неизвестно: время на вычисление истекло_).
+        Несмотря на то, что их возможности часто ограничены 
+        определенной областью применения, они чрезвычайно развились за
+        последние годы и используются в множестве ситуаций. Примерами 
+        таких инструментов являются SAT-решатели, SMT-решатели,
+        инструменты проверки моделей.
 
-       - _Proof assistants_ are hybrid tools that automate the more
-         routine aspects of building proofs while depending on human
-         guidance for more difficult aspects.  Widely used proof
-         assistants include Isabelle, Agda, Twelf, ACL2, PVS, and Coq,
-         among many others.
+      - _Средства доказательства (Proof assistants)_ - гибридные
+        инструменты, которые автоматизируют наиболее рутинные аспекты
+        доказательства, но полагаются на помощь человека в более
+        сложных ситуациях. Широко используемые средства доказательства
+        включают  Isabelle, Agda, Twelf, ACL2, PVS, и Coq, а также
+        многие другие.
 
-    This course is based around Coq, a proof assistant that has been
-    under development since 1983 and that in recent years has
-    attracted a large community of users in both research and
-    industry.  Coq provides a rich environment for interactive
-    development of machine-checked formal reasoning.  The kernel of
-    the Coq system is a simple proof-checker, which guarantees that
-    only correct deduction steps are ever performed.  On top of this
-    kernel, the Coq environment provides high-level facilities for
-    proof development, including a large library of common definitions
-    and lemmas, powerful tactics for constructing complex proofs
-    semi-automatically, and a special-purpose programming language for
-    defining new proof-automation tactics for specific situations.
+    Этот курс базируется вокруг Coq, средства доказательства, которое
+    разрабатывалось с 1983 года и в недавние годы привлекло большое
+    сообщество пользователей, использующих его для исследования и
+    практического применения. Coq предоставляет широкие возможности
+    для интерактивной разработки проверяемых компьютером рассуждений.
+    Ядром Coq является простой алгоритм проверки доказательств, который
+    гарантирует, что в доказательстве используются только корректные
+    шаги. Поверх этого ядра, окружение Coq предоставляет
+    высокоуровневые возможности разработки доказательств, включая
+    обширную библиотеку определений и теореме, мощные тактики для
+    построения сложных доказательств полуавтоматически, и язык
+    специального назначения для создания новых тактик для автоматизации
+    доказательств в особых ситуациях.
 
-    Coq has been a critical enabler for a huge variety of work across
-    computer science and mathematics:
+    Coq стал важнейшим инструментом для широкого набора задача 
+    информатики и математики:
 
-    - As a _platform for modeling programming languages_, it has
-      become a standard tool for researchers who need to describe and
-      reason about complex language definitions.  It has been used,
-      for example, to check the security of the JavaCard platform,
-      obtaining the highest level of common criteria certification,
-      and for formal specifications of the x86 and LLVM instruction
-      sets and programming languages such as C.
+    - Как _платформа для моделирования языков программирования_, он
+      является стандартным инструментом среди исследователей, которые
+      хотят составлять и доказывать сложные языковые концепции. Для
+      примера, он был использован для проверки безопасности платформы
+      JavaCard, для формальной спецификации набора инструкции
+      архитектуры x86 и LLVM, а также языков программирования, таких
+      как C.
 
-    - As an _environment for developing formally certified software
-      and hardware_, Coq has been used, for example, to build
-      CompCert, a fully-verified optimizing compiler for C, and
-      CertiKos, a fully verified hypervisor, for proving the
-      correctness of subtle algorithms involving floating point
-      numbers, and as the basis for CertiCrypt, an environment for
-      reasoning about the security of cryptographic algorithms.  It is
-      also being used to build verified implementations of the
-      open-source RISC-V processor.
+    - Как _окружения для разработки сертифицированного программного
+      и аппаратного обеспечения_, Coq использовался, например, для
+      создания CompCert, оптимизирующего компилятора C, полностью 
+      проверенного средствами Coq; верифицированного гипервизора
+      CertiKos; для доказательства корректности нескольких алгоритмов 
+      с числами с плавающей точкой, и как основа для CertiCrypt,
+      окружения для рассуждений о безопасности криптографических 
+      алгоритмов. Он также использовался для создания верифицированных
+      реализаций открытого процессора RISC-V.
 
-    - As a _realistic environment for functional programming with
-      dependent types_, it has inspired numerous innovations.  For
-      example, the Ynot system embeds "relational Hoare reasoning" (an
-      extension of the _Hoare Logic_ we will see later in this course)
-      in Coq.
+    - Как _функциональный язык программирования с зависимыми типами_,
+      он вдохновил множество инноваций. Для примера, система Ynot 
+      дополняет Coq "суждениями Хоара об отношениях" (расширение 
+      _Логики Хоара_, которую мы рассмотрим в этом курсе).
 
-    - As a _proof assistant for higher-order logic_, it has been used
-      to validate a number of important results in mathematics.  For
-      example, its ability to include complex computations inside
-      proofs made it possible to develop the first formally verified
-      proof of the 4-color theorem.  This proof had previously been
-      controversial among mathematicians because part of it included
-      checking a large number of configurations using a program. In
-      the Coq formalization, everything is checked, including the
-      correctness of the computational part.  More recently, an even
-      more massive effort led to a Coq formalization of the
-      Feit-Thompson Theorem -- the first major step in the
-      classification of finite simple groups.
+    - Как _средство доказательства для логики высших порядков_, он
+      использовался для подтверждения некоторых важных результатов 
+      в математике. Для примера, возможность включать сложные
+      вычисления в доказательства позволила получить первое полностью
+      формальное доказательство теоремы о четырех красках. Прежде,
+      это доказательство вызывало недоверие среди математиков, потому
+      что частью его была проверка большого количества конфигураций 
+      при помощи программы. В доказательстве для Coq же проверяется
+      все, включая корректность вычислительной части. ПОзднее, была
+      получена формализация для теоремы Фейта-Томпсона -- первый
+      большой шаг на пути классификации простых конечных групп.  
 
-   By the way, in case you're wondering about the name, here's what
-   the official Coq web site at INRIA (the French national research
-   lab where Coq has mostly been developed) says about it: "Some
-   French computer scientists have a tradition of naming their
-   software as animal species: Caml, Elan, Foc or Phox are examples of
-   this tacit convention. In French, 'coq' means rooster, and it
-   sounds like the initials of the Calculus of Constructions (CoC) on
-   which it is based."  The rooster is also the national symbol of
-   France, and C-o-q are the first three letters of the name of
-   Thierry Coquand, one of Coq's early developers. *)
-
-(* ================================================================= *)
-(** ** Functional Programming *)
-
-(** The term _functional programming_ refers both to a collection of
-    programming idioms that can be used in almost any programming
-    language and to a family of programming languages designed to
-    emphasize these idioms, including Haskell, OCaml, Standard ML,
-    F##, Scala, Scheme, Racket, Common Lisp, Clojure, Erlang, and Coq.
-
-    Functional programming has been developed over many decades --
-    indeed, its roots go back to Church's lambda-calculus, which was
-    invented in the 1930s, well before the first computers (at least
-    the first electronic ones)!  But since the early '90s it has
-    enjoyed a surge of interest among industrial engineers and
-    language designers, playing a key role in high-value systems at
-    companies like Jane St. Capital, Microsoft, Facebook, and
-    Ericsson.
-
-    The most basic tenet of functional programming is that, as much as
-    possible, computation should be _pure_, in the sense that the only
-    effect of execution should be to produce a result: it should be
-    free from _side effects_ such as I/O, assignments to mutable
-    variables, redirecting pointers, etc.  For example, whereas an
-    _imperative_ sorting function might take a list of numbers and
-    rearrange its pointers to put the list in order, a pure sorting
-    function would take the original list and return a _new_ list
-    containing the same numbers in sorted order.
-
-    A significant benefit of this style of programming is that it
-    makes programs easier to understand and reason about.  If every
-    operation on a data structure yields a new data structure, leaving
-    the old one intact, then there is no need to worry about how that
-    structure is being shared and whether a change by one part of the
-    program might break an invariant that another part of the program
-    relies on.  These considerations are particularly critical in
-    concurrent systems, where every piece of mutable state that is
-    shared between threads is a potential source of pernicious bugs.
-    Indeed, a large part of the recent interest in functional
-    programming in industry is due to its simpler behavior in the
-    presence of concurrency.
-
-    Another reason for the current excitement about functional
-    programming is related to the first: functional programs are often
-    much easier to parallelize than their imperative counterparts.  If
-    running a computation has no effect other than producing a result,
-    then it does not matter _where_ it is run.  Similarly, if a data
-    structure is never modified destructively, then it can be copied
-    freely, across cores or across the network.  Indeed, the
-    "Map-Reduce" idiom, which lies at the heart of massively
-    distributed query processors like Hadoop and is used by Google to
-    index the entire web is a classic example of functional
-    programming.
-
-    For purposes of this course, functional programming has yet
-    another significant attraction: it serves as a bridge between
-    logic and computer science.  Indeed, Coq itself can be viewed as a
-    combination of a small but extremely expressive functional
-    programming language plus a set of tools for stating and proving
-    logical assertions.  Moreover, when we come to look more closely,
-    we find that these two sides of Coq are actually aspects of the
-    very same underlying machinery -- i.e., _proofs are programs_.  *)
-
+    Кстати, если вас интересует происхождение названия, вот что
+    официальный сайт Coq INRIA (национальная французская 
+    исследовательская лаборатория, где Coq в основном разрабатывался)
+    говорит об этом: "Некоторые французские информатики имеют
+    традицией называть свои программы именами животных, как пример:
+    Caml, Elan, Foc или Phox. На французском, 'coq' означает 'петух',
+    и также его произношение совпадает с первыми буквами исчисления
+    высказываний (Calculus of Constructions, CoC), на котором он 
+    основан". Петух также является национальным символом Франции, и
+    C-o-q - первые три буквы имени Thierry Coquand'а, одного из 
+    первых разработчиков Coq. *)
 
 (* ================================================================= *)
-(** ** Further Reading *)
+(** ** Функциональное программирование *)
 
-(** This text is intended to be self contained, but readers looking
-    for a deeper treatment of particular topics will find some
-    suggestions for further reading in the [Postscript]
-    chapter. *)
+(** Термин _функциональное программирование_ используется для 
+    обозначения идиом, которые могут быть применены почти в любом
+    языке программирования, и для обозначения семейства языков,
+    созданных с упором на применение этих идиом, включающего Haskell,
+    OCaml, Standard ML, F##, Scala, Scheme, Racket, Common Lisp, 
+    Clojure, Erlang, и Coq.
+
+    Функциональное программирование развивалось на протяжении многих
+    десятилетий -- его корни берут начало от лямбда-исчисления,
+    изобретенного Алонзо Черчем в 1930, задолго до первых компьютеров
+    (как минимум электронных)! Но начиная с ранних девяностых оно
+    удостоилось внимания среди разработчиков ПО и дизайнеров языков
+    программирования, и сыграло ключевую роль в разработке приоритетных
+    систем в компаниях, таких как Jane St. Capital, Microsoft, 
+    Facebook, и Ericsson.
+
+    Основополагающий принцип функционального программирования - 
+    вычисления, по возможности, должны быть _чистыми_, то есть 
+    единственным результатом выполнения должно быть получение 
+    результата: они не должны иметь _побочных эффектов_, таких как
+    ввод/вывод, присвоение значений изменяемым переменным,
+    перенаправление указателей, и так далее. Например, там где
+    _императивная_ процедура сортировки может принимать список чисел
+    и переставить его указатели таким образом, чтобы упорядочить 
+    список, чистая функция сортировки примет оригинальный список и
+    вернет _новый_ список, содержащий те же числа в правильном порядке.
+
+    Существенным преимуществом этого стиля программирования является
+    то, что он упрощает понимание и рассуждения о свойствах программ.
+    Если каждая операция на структуре данных производит новую 
+    структуру, не трогая старую, то нет необходимости беспокоиться
+    о разделении ее между разными частями программы, и о том, как 
+    изменение в одном месте может нарушить инвариант, на который 
+    полагается другая часть программы. Эти соображения особенно важны
+    в конкурентных системах, где каждая часть изменяемого состояния,
+    разделяемая несколькими потоками, является потенциальным 
+    источником багов. Действительно, большая часть недавнего интереса
+    индустрии к функциональному программированию вызвано его простым
+    поведением в присутствии многозадачности.
+
+    Другая причина интереса к функциональным языкам связана с первой:
+    функциональные программы намного легче поддаются распараллеливанию,
+    чем императивные. Если проведение вычисления не имеет побочных 
+    эффектов, кроме получения результата, то не имеет значения _где_
+    его проводить. Также, если структура данных никогда не
+    модифицируется, ее можно свободно копировать между разными ядрами
+    или машинами в сети. В самом деле, идиома "Map-Reduce", которая
+    положена в основу распределенных обработчиков, таких как Hadoop,
+    и используется Google для индексации всей сети -- классический 
+    пример функционального программирования.
+
+    Для целей этого курса, функциональное программирование 
+    притягательно еще по одной причине: оно служит связующим звеном
+    между логикой и информатикой. И впрямь, Coq можно рассматривать
+    как крайне выразительный функциональный язык программирования,
+    дополненный средствами для заявления и доказательства логических
+    утверждений. Более того, когда мы посмотрим более внимательно, мы
+    увидим, что эти две части на самом деле обрабатываются одинаково --
+    то есть, _доказательства -- это программы_.  *)
+
+
+(* ================================================================= *)
+(** ** Дальнейшее чтение *)
+
+(** Этот текст предполагается самодостаточным, однако читатель,
+    желающий подробнее изучить определенные темы, может найти 
+    рекомендации для дальнейшего чтения в главе 
+    [Послесловие (Postscript)] *)
 
 (* ################################################################# *)
-(** * Practicalities *)
+(** * Практические вопросы *)
 
 (* ================================================================= *)
-(** ** Chapter Dependencies *)
+(** ** Зависимости между главами *)
 
-(** A diagram of the dependencies between chapters and some suggested
-    paths through the material can be found in the file [deps.html]. *)
-
-(* ================================================================= *)
-(** ** System Requirements *)
-
-(** Coq runs on Windows, Linux, and OS X.  You will need:
-
-       - A current installation of Coq, available from the Coq home
-         page.  These files have been tested with Coq 8.6.
-
-       - An IDE for interacting with Coq.  Currently, there are two
-         choices:
-
-           - Proof General is an Emacs-based IDE.  It tends to be
-             preferred by users who are already comfortable with
-             Emacs.  It requires a separate installation (google
-             "Proof General").
-
-             Adventurous users of Coq within Emacs may also want to
-             check out extensions such as [company-coq] and
-             [control-lock].
-
-           - CoqIDE is a simpler stand-alone IDE.  It is distributed
-             with Coq, so it should be available once you have Coq
-             installed.  It can also be compiled from scratch, but on
-             some platforms this may involve installing additional
-             packages for GUI libraries and such. *)
+(** Диаграмма зависимостей между главами и предлагаемые пути изучения
+    материала находятся в файле [deps.html]. *)
 
 (* ================================================================= *)
-(** ** Exercises *)
+(** ** Системные требования *)
 
-(** Each chapter includes numerous exercises.  Each is marked with a
-    "star rating," which can be interpreted as follows:
+(** Coq работает на Windows, Linux, и OS X. Вам потребуются:
 
-       - One star: easy exercises that underscore points in the text
-         and that, for most readers, should take only a minute or two.
-         Get in the habit of working these as you reach them.
+       - Установленная свежая версия Coq, доступная на его домашней 
+         странице. Файлы курса был протестированы с Coq 8.6.
 
-       - Two stars: straightforward exercises (five or ten minutes).
+       - IDE  для взаимодействия с Coq. На текущий момент, доступно
+         два варианта:
 
-       - Three stars: exercises requiring a bit of thought (ten
-         minutes to half an hour).
+           - Proof General -- IDE, основанная на Emacs. Ее предпочитают
+             пользователи, уже знакомые с Emacs. Требуется
+             дополнительная установка (ищите "Proof General").
 
-       - Four and five stars: more difficult exercises (half an hour
-         and up).
+             Отважные пользователи Coq и Emacs могут также установить
+             расширения, такие как [company-coq] и [control-lock].
 
-    Also, some exercises are marked "advanced," and some are marked
-    "optional."  Doing just the non-optional, non-advanced exercises
-    should provide good coverage of the core material.  Optional
-    exercises provide a bit of extra practice with key concepts and
-    introduce secondary themes that may be of interest to some
-    readers.  Advanced exercises are for readers who want an extra
-    challenge and a deeper cut at the material.
-
-    _Please do not post solutions to the exercises in a public place_. 
-    Software Foundations is widely used both for self-study and for
-    university courses.  Having solutions easily available makes it
-    much less useful for courses, which typically have graded homework
-    assignments.  We especially request that readers not post
-    solutions to the exercises anyplace where they can be found by
-    search engines. *)
+           - CoqIDE -- более простая отдельная IDE. Она 
+             распространяется вместе с Coq, то есть будет доступна
+             сразу, когда вы установите Coq. Также может быть собрана
+             вручную, что потребует установки дополнительного ПО на
+             некоторых платформах, например, библиотек GUI и прочего *)
 
 (* ================================================================= *)
-(** ** Downloading the Coq Files *)
+(** ** Упражнения *)
 
-(** A tar file containing the full sources for the "release version"
-    of this book (as a collection of Coq scripts and HTML files) is
-    available at http://www.cis.upenn.edu/~bcpierce/sf.
+(** Все главы включает многочисленные упражнения. Каждое упражнение
+    отмечено "звездным рейтингом", который стоит понимать так: 
 
-    (If you are using the book as part of a class, your professor may
-    give you access to a locally modified version of the files, which
-    you should use instead of the release version.) *)
+       - Одна звезда: простые упражнения, которые подчеркивают главную
+         идею текста, и у большинства читателей не займут больше пары
+         минут. Возьмите в привычку выполнять такие упражнения, как 
+         только доберетесь до них.
+
+       - Две звезды: простые упражнения (на пять - десять минут)
+
+       - Три звезды: упражнения, требующие некоторого размышления
+         (от десяти минут до получаса)
+
+       - Четыре и пять звезд: более сложные упражнения (от получаса
+         и более).
+
+    Также, некоторые упражнения отмечены как "продвинутые", а некоторые
+    как "опциональные". Выполнение только упражнений, не отмеченных
+    как опциональные или продвинутые, хорошо покрывает основной
+    материал книги. Опциональные упражнения предоставляют возможность
+    дополнительно попрактиковаться с ключевыми концепциями и вводят
+    второстепенные темы, которые могут быть интересны некоторым
+    читателям. Продвинутые упражнения для читателей, которые хотят
+    дополнительного вызова и более глубокого изучения материала.
+
+    _Пожалуйтса, не размещайте решения упражнений публично_.
+    "Основы программного обеспечения" широко используются как для 
+    самообразования, так и в университетских курсах. Легкий доступ
+    к решениям делает эту книгу намного менее пригодной для курсов,
+    которые обычно имеют оцениваемую домашнюю работу. Мы особенно
+    просим читателей не размещать решения там, где они могут быть
+    найдены поисковыми системами. *)
 
 (* ================================================================= *)
-(** ** Lecture Videos *)
+(** ** Получение файлов Coq *)
 
-(** Lectures for an intensive summer course based on _Logical
-    Foundations_ (part of the DeepSpec summer school in 2017) can be
-    found at https://deepspec.org/event/dsss17/coq_intensive.html.
-    The video quality is poor at the beginning but gets better in the
-    later lectures. *)
+(** Полные исходные коды в tar "релиза" этой книги (в виде коллекции
+    исходных файлов Coq и HTML файлов) доступны на сайте
+    http://www.cis.upenn.edu/~bcpierce/sf.
+
+    (Если вы используете эту книгу как часть курса, ваш преподаватель
+    может иметь доступ к измененным версиям этих файлов, которые вам
+    следует использовать вместо релизной версии.) *)
+
+(* ================================================================= *)
+(** ** Видео лекции *)
+
+(** Лекции интенсивного летнего курса по _Основам логики_ (часть 
+    DeepSpec summer school 2017) доступны по ссылке 
+    https://deepspec.org/event/dsss17/coq_intensive.html .
+    Качество видео не очень хорошее в начале, но улучшается 
+    в дальнейших лекциях. *)
 
 (* ################################################################# *)
-(** * Note for Instructors *)
+(** * Заметки для преподавателей *)
 
-(** If you plan to use these materials in your own course, you will
-    undoubtedly find things you'd like to change, improve, or add.
-    Your contributions are welcome!
+(** Если вы планируете использовать материалы книги для своего курса,
+    вы, без сомнения, обнаружите вещи, которые хотели бы изменить,
+    улучшить, или добавить. Ваш вклад приветствуется!
 
-    In order to keep the legalities simple and to have a single
-    point of responsibility in case the need should ever arise to
-    adjust the license terms, sublicense, etc., we ask all
-    contributors (i.e., everyone with access to the developers'
-    repository) to assign copyright in their contributions to the
-    appropriate "author of record," as follows:
+    Чтобы упростить правовую сторону вопроса и иметь единственного
+    ответственного в случае, если потребуется необходимость изменить
+    условия лицензии, мы просим всех разработчиков (то есть всех
+    с доступом к репозиторию) передать права на их работу 
+    соответствующему автору:
 
       - I hereby assign copyright in my past and future contributions
         to the Software Foundations project to the Author of Record of
@@ -369,29 +375,29 @@
         other software infrastructure), the Author of Record is
         Benjamin Pierce.
 
-    To get started, please send an email to Benjamin Pierce, describing
-    yourself and how you plan to use the materials and including 
-       (1) the above copyright transfer text and 
-       (2) the result of doing "htpasswd -s -n NAME"
-    where NAME is your preferred user name. 
+    Чтобы начать, пожалуйста, пришлите письмо Бенжамину Пирсу, 
+    в котором расскажите о себе и ваших планах по использованию 
+    материала, и прикрепите
+        (1) текст выше, удостоверяющий передачу вами прав
+        (2) результат команды "htpasswd -s -n NAME", где NAME -- ваше
+    предпочитаемое имя пользователя.
 
-    We'll set you up with access to the subversion repository and 
-    developers' mailing lists.  In the repository you'll find a 
-    file [INSTRUCTORS] with further instructions. *)
-
-(* ################################################################# *)
-(** * Translations *)
-
-(** Thanks to the efforts of a team of volunteer translators,
-    _Software Foundations_ can be enjoyed in Japanese at
-    http://proofcafe.org/sf.  A Chinese translation is underway. *)
+    Мы дадим вам доступ к subversion репозиторию и списку рассылки
+    разработчиков. В репозитории вы найдете файл [INSTRUCTORS] с
+    дальнейшими инструкциями. *)
 
 (* ################################################################# *)
-(** * Thanks *)
+(** * Переводы *)
 
-(** Development of the _Software Foundations_ series has been
-    supported, in part, by the National Science Foundation under the
-    NSF Expeditions grant 1521523, _The Science of Deep
-    Specification_. *)
+(** Благодаря стараниям команды добровольцев-переводчиков, 
+    _Основы программного обеспечения_ доступны на японском по ссылке
+    http://proofcafe.org/sf. Готовится перевод на китайский. *)
+
+(* ################################################################# *)
+(** * Благодарности *)
+
+(** Разработка _Основ программного обеспечения_ проводилась при 
+    поддержке Национального научного фонда, грант NSF Expeditions 
+    1521523, _The Science of Deep Specification_. *)
 
 (** $Date: 2017-08-24 17:13:02 -0400 (Thu, 24 Aug 2017) $ *)
