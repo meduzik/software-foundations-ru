@@ -1,90 +1,92 @@
-(** * Basics: Functional Programming in Coq *)
+(** * Основы: функциональное программирование в Coq *)
 
-(* REMINDER:
+(* НАПОМИНАНИЕ:
 
           #####################################################
-          ###  PLEASE DO NOT DISTRIBUTE SOLUTIONS PUBLICLY  ###
+          ###  ПОЖАЛУЙСТА НЕ ПУБЛИКУЙТЕ РЕШЕНИЯ УПРАЖНЕНИЙ  ###
           #####################################################
 
-   (See the [Preface] for why.)
+   (Смотрите [Предисловие] для ответа на вопрос "почему".)
 *)
 
 (* ################################################################# *)
-(** * Introduction *)
+(** * Введение *)
 
-(** The functional programming style is founded on simple, everyday
-    mathematical intuition: If a procedure or method has no side
-    effects, then (ignoring efficiency) all we need to understand
-    about it is how it maps inputs to outputs -- that is, we can think
-    of it as just a concrete method for computing a mathematical
-    function.  This is one sense of the word "functional" in
-    "functional programming."  The direct connection between programs
-    and simple mathematical objects supports both formal correctness
-    proofs and sound informal reasoning about program behavior.
+(** Функциональный стиль программирования основан на простой, 
+    повседневной математической интуиции: если метод или процедура
+    не имеют побочных эффектов, то все (кроме эффективности), о чем
+    нам нужно заботиться -- какой результат сопоставляется каким
+    входным данным. Таким образом, мы можем считать это конкретным
+    способом вычисления математической функции. Это первое значения
+    слов "функциональное программирование". Прямая связь между
+    программами и простыми математическими объектами дает возможность
+    проводить и формальные доказательства корректности, и неформальные
+    рассуждения о поведении программ.
 
-    The other sense in which functional programming is "functional" is
-    that it emphasizes the use of functions (or methods) as
-    _first-class_ values -- i.e., values that can be passed as
-    arguments to other functions, returned as results, included in
-    data structures, etc.  The recognition that functions can be
-    treated as data gives rise to a host of useful and powerful
-    programming idioms.
+    Второе значение "функционального" программирования в том, что оно
+    представляет функции (или методы) как _объекты первого рода_, то
+    есть значения, которые можно передавать в качестве аргументов 
+    другим функциям, помещать в структуры данных, и т.д. Понимание
+    того, что с функциями можно обращаться как с данными, дало начало
+    множеству полезных и мощных программных идиом.
 
-    Other common features of functional languages include _algebraic
-    data types_ and _pattern matching_, which make it easy to
-    construct and manipulate rich data structures, and sophisticated
-    _polymorphic type systems_ supporting abstraction and code reuse.
-    Coq offers all of these features.
+    К другим частым особенностям функциональных языков программирования
+    относятся _алгебраические типы данных_ и _сопоставление с 
+    образцом_, что упрощает создание и работу со сложными структурами
+    данных, а также мощная _полиморфная система типов_, поддерживающая
+    абстракции и переиспользование кода. Coq предоставляет все эти
+    возможности.
 
-    The first half of this chapter introduces the most essential
-    elements of Coq's functional programming language, called
-    _Gallina_.  The second half introduces some basic _tactics_ that
-    can be used to prove properties of Coq programs. *)
+    Первая половина этой главы вводит самые важные элементы 
+    функционального языка программирования _Gallina_, используемого
+    Coq. Вторая часть представляет некоторые базовые _тактики_,
+    используемые для доказательства свойтсв программ в Coq. *)
 
 (* ################################################################# *)
-(** * Data and Functions *)
+(** * Данные и функции *)
 (* ================================================================= *)
-(** ** Enumerated Types *)
+(** ** Типы-перечисления *)
 
-(** One notable aspect of Coq is that its set of built-in
-    features is _extremely_ small.  For example, instead of providing
-    the usual palette of atomic data types (booleans, integers,
-    strings, etc.), Coq offers a powerful mechanism for defining new
-    data types from scratch, with all these familiar types as
-    instances.
+(** Примечательной чертой Coq является то, что набор встроенных 
+    особенностей _крайне_ мал. Например, вместо того, что предоставить
+    обычный набор примитивных типов данных, как то логический тип, 
+    целые числа, строки, Coq предлагает мощный механизм для задания
+    новых типов данных, с помощью которого можно воссоздать все эти
+    примитивы.
 
-    Naturally, the Coq distribution comes preloaded with an extensive
-    standard library providing definitions of booleans, numbers, and
-    many common data structures like lists and hash tables.  But there
-    is nothing magic or primitive about these library definitions.  To
-    illustrate this, we will explicitly recapitulate all the
-    definitions we need in this course, rather than just getting them
-    implicitly from the library. *)
+    Разумеется, Coq распространяется вместе с обширной стандартной
+    библиотекой, предоставляющей определения логического типа, чисел,
+    и многих других часто используемых структур данных вроде списков
+    и хэш таблиц. Но в этих определениях нет ничего магического. Чтобы
+    продемонстрировать это, мы явно воссоздадим все эти определения
+    в данном курсе, вместо того, чтобы использовать заданные в 
+    стандартной библиотеке. *)
 
 (* ================================================================= *)
-(** ** Days of the Week *)
+(** ** Дни недели *)
 
-(** To see how this definition mechanism works, let's start with
-    a very simple example.  The following declaration tells Coq that
-    we are defining a new set of data values -- a _type_. *)
+(** Чтобы увидеть как работает этот механизм, давайте начнем с простого
+    примера. Следующее объявление говорит Coq, что мы задаем новый
+    набор значений -- _тип__. *)
 
-Inductive day : Type :=
-  | monday : day
-  | tuesday : day
-  | wednesday : day
-  | thursday : day
-  | friday : day
-  | saturday : day
-  | sunday : day.
+Inductive day : Type := (* день *)
+  | monday : day (* понедельник *)
+  | tuesday : day (* вторник *)
+  | wednesday : day (* среда *)
+  | thursday : day (* четверг *)
+  | friday : day (* пятница *)
+  | saturday : day (* суббота *)
+  | sunday : day. (* воскресенье *)
 
-(** The type is called [day], and its members are [monday],
-    [tuesday], etc.  The second and following lines of the definition
-    can be read "[monday] is a [day], [tuesday] is a [day], etc."
+(** Этот тип называется [day], и его челнами являются [monday],
+    [tuesday], и т.д. Вторая и последующие строки определения можно
+    прочитать как "[monday (понедельник)] это [day (день)], 
+    [tuesday (вторник)] это [day (день)] и т.д."
 
-    Having defined [day], we can write functions that operate on
-    days. *)
+    Определив [день], мы можем записать функцию, которая им оперирует.
+*)
 
-Definition next_weekday (d:day) : day :=
+Definition next_weekday (d:day) : day := (* следующий будний день *)
   match d with
   | monday    => tuesday
   | tuesday   => wednesday
@@ -95,17 +97,16 @@ Definition next_weekday (d:day) : day :=
   | sunday    => monday
   end.
 
-(** One thing to note is that the argument and return types of
-    this function are explicitly declared.  Like most functional
-    programming languages, Coq can often figure out these types for
-    itself when they are not given explicitly -- i.e., it can do _type
-    inference_ -- but we'll generally include them to make reading
-    easier. *)
+(** Стоит отметить, что типы аргумента и возвращаемого значения функции
+    указаны явно. Как и многие функциональные языки, Coq часто может
+    выяснить эти типы самостоятельно, когда они не указаны явно -- 
+    это называется _выводом типов_ -- но мы в основном будем указывать
+    их, чтобы упростить чтение. *)
 
-(** Having defined a function, we should check that it works on
-    some examples.  There are actually three different ways to do this
-    in Coq.  First, we can use the command [Compute] to evaluate a
-    compound expression involving [next_weekday]. *)
+(** Определив функцию, мы можем проверить ее работу на примерах. В Coq
+    есть три способа это сделать. Во-первых, мы можем использовать
+    команду [Compute] что вычислить составное выражение, включающее
+    [next_weekday]. *)
 
 Compute (next_weekday friday).
 (* ==> monday : day *)
@@ -113,88 +114,91 @@ Compute (next_weekday friday).
 Compute (next_weekday (next_weekday saturday)).
 (* ==> tuesday : day *)
 
-(** (We show Coq's responses in comments, but, if you have a
-    computer handy, this would be an excellent moment to fire up the
-    Coq interpreter under your favorite IDE -- either CoqIde or Proof
-    General -- and try this for yourself.  Load this file, [Basics.v],
-    from the book's Coq sources, find the above example, submit it to
-    Coq, and observe the result.)
+(** (Мы демонстрируем ответы Coq в комментариях, однако, если компьютер
+    у вас под рукой, это отличный момент чтобы запустить интерпретатор
+    Coq в вашей любимой IDE -- CoqIde или Proof General -- и 
+    попробовать ввести команды самостоятельно. Загрузите этот файл,
+    [Basics.v] из исходных файлов Coq книги, найдите пример выше, 
+    выполните его и посмотрите на результат.)
 
-    Second, we can record what we _expect_ the result to be in the
-    form of a Coq example: *)
+    Во-вторых, мы можем отметить, какой результат вычисления мы
+    _ожидаем_ от Coq: *)
 
 Example test_next_weekday:
   (next_weekday (next_weekday saturday)) = tuesday.
 
-(** This declaration does two things: it makes an
-    assertion (that the second weekday after [saturday] is [tuesday]),
-    and it gives the assertion a name that can be used to refer to it
-    later.  Having made the assertion, we can also ask Coq to verify
-    it, like this: *)
+(** Это определение делает две вещи: утверждает, что второй следующий 
+    будний день после [субботы (saturday)] -- это [вторник (tuesday)],
+    и дает этому утверждению имя, на которое можно ссылаться в 
+    дальнейщем. Сделав утверждение, мы можем попросить Coq проверить
+    его, например, так: *)
 
 Proof. simpl. reflexivity.  Qed.
 
-(** The details are not important for now (we'll come back to
-    them in a bit), but essentially this can be read as "The assertion
-    we've just made can be proved by observing that both sides of the
-    equality evaluate to the same thing, after some simplification."
+(** Подробности сейчас не важны (мы вернемся к этому через некоторое
+    время), но по сути это можно прочитать как "Утверждение, которое
+    мы сделали, может быть доказано наблюдением того факта, что
+    обе части равенства вычисляются в одно и то же значение, после
+    упрощения".
 
-    Third, we can ask Coq to _extract_, from our [Definition], a
-    program in some other, more conventional, programming
-    language (OCaml, Scheme, or Haskell) with a high-performance
-    compiler.  This facility is very interesting, since it gives us a
-    way to go from proved-correct algorithms written in Gallina to
-    efficient machine code.  (Of course, we are trusting the
-    correctness of the OCaml/Haskell/Scheme compiler, and of Coq's
-    extraction facility itself, but this is still a big step forward
-    from the way most software is developed today.) Indeed, this is
-    one of the main uses for which Coq was developed.  We'll come back
-    to this topic in later chapters. *)
-
-(* ================================================================= *)
-(** ** Homework Submission Guidelines *)
-
-(** If you are using Software Foundations in a course, your instructor
-    may use automatic scripts to help grade your homework assignments.
-    In order for these scripts to work correctly (so that you get full
-    credit for your work!), please be careful to follow these rules:
-      - The grading scripts work by extracting marked regions of the
-        .v files that you submit.  It is therefore important that you
-        do not alter the "markup" that delimits exercises: the
-        Exercise header, the name of the exercise, the "empty square
-        bracket" marker at the end, etc.  Please leave this markup
-        exactly as you find it.
-      - Do not delete exercises.  If you skip an exercise (e.g.,
-        because it is marked Optional, or because you can't solve it),
-        it is OK to leave a partial proof in your .v file, but in this
-        case please make sure it ends with [Admitted] (not, for
-        example [Abort]).
-      - It is fine to use additional definitions (of helper functions,
-        useful lemmas, etc.) in your solutions.  You can put these
-        between the exercise header and the theorem you are asked to
-        prove. *)
+    В-третьих, мы можем попросить Coq _извлечь_ из нашего 
+    [Определения (Definition)] программу на более традиционном языке
+    (OCaml, Scheme или Haskell) с оптимизирующим компилятором. Эта
+    возможность выглядит особенно интересной, так как она позволяет
+    перейти от доказанно корректных алгоритмов, написанных на языке
+    Gallina, к эффективному машинному коду. (Конечно, в этом случае
+    мы должны доверять корректной реализации компилятора OCaml/
+    Haskell/Scheme, и алгоритму извлечения в Coq, однако это все равно
+    большой шаг по сравнению с тем, как  сегодня разрабатывается 
+    большая часть ПО). Действительно, извлечение - одно из основных
+    предназначений Coq, для которых он разрабатывался. Мы вернемся 
+    к этой теме в следующих главах. *)
 
 (* ================================================================= *)
-(** ** Booleans *)
+(** ** Руководство по подготовке домашних заданий *)
 
-(** In a similar way, we can define the standard type [bool] of
-    booleans, with members [true] and [false]. *)
+(** Если вы используете Основы программного обеспечения в рамках курса,
+    ваш преподаватель, возможно, применяет автоматические средства 
+    выставления оценок за домашнюю работу. Чтобы эти скрипты работали
+    корректно (и вы получили полные баллы за выполненную работу!),
+    пожалуйста, внимательно следуйте следующим правилам:
+      - Скрипт оценки извлекает отмеченные области файлов .v, которые
+        вы отправляете на проверку. То есть, важно не менять 
+        "разметку" упражнений: заголовок упражнения, название
+        упражнения, "пустой квадрат из скобок" в конце и т.д. 
+        Пожалуйста, оставьте эту разметку точно в том виде, в котором 
+        вы ее обнаружите.
+      - Не удаляйте упражнения. Если вы пропустите упражнение 
+        (например, потому что оно отмечено как опциональное, или 
+        потому, что вы не можете решить его), можно оставить частичное
+        доказательство в файле .v, но в таком случае удостоверьтесь,
+        что оно завершается командой [Admitted] (а не, например,
+        [Abort]).
+      - Вы можете использовать дополнительные определения 
+        (вспомогательные функций, леммы, и т.д.) в своих решениях.
+        Их можно разместить между заголовком упражнения и теоремой,
+        которую вы должны доказать. *)
+
+(* ================================================================= *)
+(** ** Логический тип *)
+
+(** Похожим образом мы можем объявить также стандартный логический
+    тип [bool], с двумя челнами: [true](истина) и [false](ложь). *)
 
 Inductive bool : Type :=
   | true : bool
   | false : bool.
 
-(** Although we are rolling our own booleans here for the sake
-    of building up everything from scratch, Coq does, of course,
-    provide a default implementation of the booleans, together with a
-    multitude of useful functions and lemmas.  (Take a look at
-    [Coq.Init.Datatypes] in the Coq library documentation if you're
-    interested.)  Whenever possible, we'll name our own definitions
-    and theorems so that they exactly coincide with the ones in the
-    standard library.
+(** Хотя мы и задаем свой собственный логический тип с целью
+    построить все определения с нуля, Coq, разумеется, предоставляет
+    стандартную реализацию логического типа, а также множество полезных
+    функций и теорем. (Вы можете найти их в [Coq.Init.Datatypes] в
+    документации по библиотеке Coq). Там, где это возможно, мы будем
+    давать нашим определениям и теоремам те же имена, что они имеют
+    в стандартной библиотеке. 
 
-    Functions over booleans can be defined in the same way as
-    above: *)
+    Функции над логичекским типом можно задавать тем же образом, что
+    мы делали это выше для дней недели: *)
 
 Definition negb (b:bool) : bool :=
   match b with
