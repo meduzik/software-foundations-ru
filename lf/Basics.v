@@ -693,7 +693,7 @@ Proof. simpl. reflexivity.  Qed.
 Example test_leb3:             (leb 4 2) = false.
 Proof. simpl. reflexivity.  Qed.
 
-(** **** Упражнение: 1 star (blt_nat)  *)
+(** **** Упражнение: 1 звезда (blt_nat)  *)
 (** Функция [blt_nat] проверяет два натуральных [nat-ural] числа на
     отношение "меньше чем" [l-ess t-han], и возвращает значение 
     логического типа [b-oolean]. Вместо того, чтобы писать новое
@@ -1105,7 +1105,7 @@ Proof.
   - reflexivity.
 Qed.
 
-(** **** Упражнение: 2 stars (andb_true_elim2)  *)
+(** **** Упражнение: 2 звезды (andb_true_elim2)  *)
 (** Докажите следующее утверждение, отмечая случаи (и подслучаи) 
     маркерами, когда используете [destruct]. *)
 
@@ -1115,7 +1115,7 @@ Proof.
   (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Упражнение: 1 star (zero_nbeq_plus_1)  *)
+(** **** Упражнение: 1 звезда (zero_nbeq_plus_1)  *)
 Theorem zero_nbeq_plus_1 : forall n : nat,
   beq_nat 0 (n + 1) = false.
 Proof.

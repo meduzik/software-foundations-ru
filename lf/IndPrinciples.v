@@ -56,13 +56,13 @@ Proof.
     important to realize that, modulo these bits of bookkeeping,
     applying [nat_ind] is what we are really doing. *)
 
-(** **** Exercise: 2 stars, optional (plus_one_r')  *)
+(** **** Упражнение: 2 звезды, опциональное (plus_one_r')  *)
 (** Complete this proof without using the [induction] tactic. *)
 
 Theorem plus_one_r' : forall n:nat,
   n + 1 = S n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** Coq generates induction principles for every datatype defined with
@@ -97,7 +97,7 @@ Check yesno_ind.
                       P no  ->
                       forall y : yesno, P y *)
 
-(** **** Exercise: 1 star, optional (rgb)  *)
+(** **** Упражнение: 1 звезда, опциональное (rgb)  *)
 (** Write out the induction principle that Coq will generate for the
     following datatype.  Write down your answer on paper or type it
     into a comment, and then compare it with what Coq prints. *)
@@ -125,7 +125,7 @@ Check natlist_ind.
             P l -> P (ncons n l)) ->
          forall n : natlist, P n *)
 
-(** **** Exercise: 1 star, optional (natlist1)  *)
+(** **** Упражнение: 1 звезда, опциональное (natlist1)  *)
 (** Suppose we had written the above definition a little
    differently: *)
 
@@ -150,7 +150,7 @@ Inductive natlist1 : Type :=
           [t]), then [P] holds for [c x1 ... xn]".
 *)
 
-(** **** Exercise: 1 star, optional (byntree_ind)  *)
+(** **** Упражнение: 1 звезда, опциональное (byntree_ind)  *)
 (** Write out the induction principle that Coq will generate for the
     following datatype.  (Again, write down your answer on paper or
     type it into a comment, and then compare it with what Coq
@@ -162,7 +162,7 @@ Inductive byntree : Type :=
  | nbranch : yesno -> byntree -> byntree -> byntree.
 (** [] *)
 
-(** **** Exercise: 1 star, optional (ex_set)  *)
+(** **** Упражнение: 1 звезда, опциональное (ex_set)  *)
 (** Here is an induction principle for an inductively defined
     set.
 
@@ -175,7 +175,7 @@ Inductive byntree : Type :=
     Give an [Inductive] definition of [ExSet]: *)
 
 Inductive ExSet : Type :=
-  (* FILL IN HERE *)
+  (* ЗАПОЛНИТЕ *)
 .
 (** [] *)
 
@@ -208,7 +208,7 @@ Inductive ExSet : Type :=
     function that, when applied to a type [X], gives us back an
     induction principle specialized to the type [list X]. *)
 
-(** **** Exercise: 1 star, optional (tree)  *)
+(** **** Упражнение: 1 звезда, опциональное (tree)  *)
 (** Write out the induction principle that Coq will generate for
    the following datatype.  Compare your answer with what Coq
    prints. *)
@@ -219,7 +219,7 @@ Inductive tree (X:Type) : Type :=
 Check tree_ind.
 (** [] *)
 
-(** **** Exercise: 1 star, optional (mytype)  *)
+(** **** Упражнение: 1 звезда, опциональное (mytype)  *)
 (** Find an inductive definition that gives rise to the
     following induction principle:
 
@@ -233,7 +233,7 @@ Check tree_ind.
 *) 
 (** [] *)
 
-(** **** Exercise: 1 star, optional (foo)  *)
+(** **** Упражнение: 1 звезда, опциональное (foo)  *)
 (** Find an inductive definition that gives rise to the
     following induction principle:
 
@@ -247,7 +247,7 @@ Check tree_ind.
 *) 
 (** [] *)
 
-(** **** Exercise: 1 star, optional (foo')  *)
+(** **** Упражнение: 1 звезда, опциональное (foo')  *)
 (** Consider the following inductive definition: *)
 
 Inductive foo' (X:Type) : Type :=
@@ -398,14 +398,14 @@ Proof.
   - (* m = S m' *) simpl. rewrite <- IHm'.
     rewrite <- plus_n_Sm. reflexivity.  Qed.
 
-(** **** Exercise: 1 star, optional (plus_explicit_prop)  *)
+(** **** Упражнение: 1 звезда, опциональное (plus_explicit_prop)  *)
 (** Rewrite both [plus_assoc'] and [plus_comm'] and their proofs in
     the same style as [mult_0_r''] above -- that is, for each theorem,
     give an explicit [Definition] of the proposition being proved by
     induction, and state the theorem and proof in terms of this
     defined proposition.  *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (* ################################################################# *)

@@ -152,11 +152,11 @@ Proof.
   - (* 2 + 2 = 4 *) reflexivity.
 Qed.
 
-(** **** Exercise: 2 stars (and_exercise)  *)
+(** **** Упражнение: 2 звезды (and_exercise)  *)
 Example and_exercise :
   forall n m : nat, n + m = 0 -> n = 0 /\ m = 0.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** So much for proving conjunctive statements.  To go in the other
@@ -227,11 +227,11 @@ Proof.
   intros P Q [HP HQ].
   apply HP.  Qed.
 
-(** **** Exercise: 1 star, optional (proj2)  *)
+(** **** Упражнение: 1 звезда, опциональное (proj2)  *)
 Lemma proj2 : forall P Q : Prop,
   P /\ Q -> Q.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** Finally, we sometimes need to rearrange the order of conjunctions
@@ -247,7 +247,7 @@ Proof.
     - (* left *) apply HQ.
     - (* right *) apply HP.  Qed.
 
-(** **** Exercise: 2 stars (and_assoc)  *)
+(** **** Упражнение: 2 звезды (and_assoc)  *)
 (** (In the following proof of associativity, notice how the _nested_
     intro pattern breaks the hypothesis [H : P /\ (Q /\ R)] down into
     [HP : P], [HQ : Q], and [HR : R].  Finish the proof from
@@ -257,7 +257,7 @@ Theorem and_assoc : forall P Q R : Prop,
   P /\ (Q /\ R) -> (P /\ Q) /\ R.
 Proof.
   intros P Q R [HP [HQ HR]].
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** By the way, the infix notation [/\] is actually just syntactic
@@ -317,18 +317,18 @@ Proof.
   - right. reflexivity.
 Qed.
 
-(** **** Exercise: 1 star (mult_eq_0)  *)
+(** **** Упражнение: 1 звезда (mult_eq_0)  *)
 Lemma mult_eq_0 :
   forall n m, n * m = 0 -> n = 0 \/ m = 0.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 1 star (or_commut)  *)
+(** **** Упражнение: 1 звезда (or_commut)  *)
 Theorem or_commut : forall P Q : Prop,
   P \/ Q  -> Q \/ P.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ================================================================= *)
@@ -376,14 +376,14 @@ Proof.
     follows whatever you like"; this is another common name for the
     principle of explosion. *)
 
-(** **** Exercise: 2 stars, optional (not_implies_our_not)  *)
+(** **** Упражнение: 2 звезды, опциональное (not_implies_our_not)  *)
 (** Show that Coq's definition of negation implies the intuitive one
     mentioned above: *)
 
 Fact not_implies_our_not : forall (P:Prop),
   ~ P -> (forall (Q:Prop), P -> Q).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** This is how we use [not] to state that [0] and [1] are different
@@ -430,34 +430,34 @@ Proof.
   (* WORKED IN CLASS *)
   intros P H. unfold not. intros G. apply G. apply H.  Qed.
 
-(** **** Exercise: 2 stars, advanced, recommended (double_neg_inf)  *)
+(** **** Упражнение: 2 звезды, продвинутое, рекомендуется (double_neg_inf)  *)
 (** Write an informal proof of [double_neg]:
 
    _Theorem_: [P] implies [~~P], for any proposition [P]. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 2 stars, recommended (contrapositive)  *)
+(** **** Упражнение: 2 звезды, рекомендуется (contrapositive)  *)
 Theorem contrapositive : forall (P Q : Prop),
   (P -> Q) -> (~Q -> ~P).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 1 star (not_both_true_and_false)  *)
+(** **** Упражнение: 1 звезда (not_both_true_and_false)  *)
 Theorem not_both_true_and_false : forall P : Prop,
   ~ (P /\ ~P).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 1 star, advanced (informal_not_PNP)  *)
+(** **** Упражнение: 1 звезда, продвинутое (informal_not_PNP)  *)
 Definition informal_not_PNP_TODO := 0.
 (** Write an informal proof (in English) of the proposition [forall P
     : Prop, ~(P /\ ~P)]. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (** Similarly, since inequality involves a negation, it requires a
@@ -549,26 +549,26 @@ Proof.
     intros H. rewrite H. intros H'. inversion H'.
 Qed.
 
-(** **** Exercise: 1 star, optional (iff_properties)  *)
+(** **** Упражнение: 1 звезда, опциональное (iff_properties)  *)
 (** Using the above proof that [<->] is symmetric ([iff_sym]) as
     a guide, prove that it is also reflexive and transitive. *)
 
 Theorem iff_refl : forall P : Prop,
   P <-> P.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem iff_trans : forall P Q R : Prop,
   (P <-> Q) -> (Q <-> R) -> (P <-> R).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars (or_distributes_over_and)  *)
+(** **** Упражнение: 3 звезды (or_distributes_over_and)  *)
 Theorem or_distributes_over_and : forall P Q R : Prop,
   P \/ (Q /\ R) <-> (P \/ Q) /\ (P \/ R).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** Some of Coq's tactics treat [iff] statements specially, avoiding
@@ -660,7 +660,7 @@ Proof.
   exists (2 + m).
   apply Hm.  Qed.
 
-(** **** Exercise: 1 star, recommended (dist_not_exists)  *)
+(** **** Упражнение: 1 звезда, рекомендуется (dist_not_exists)  *)
 (** Prove that "[P] holds for all [x]" implies "there is no [x] for
     which [P] does not hold."  (Hint: [destruct H as [x E]] works on
     existential assumptions!)  *)
@@ -668,17 +668,17 @@ Proof.
 Theorem dist_not_exists : forall (X:Type) (P : X -> Prop),
   (forall x, P x) -> ~ (exists x, ~ P x).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars (dist_exists_or)  *)
+(** **** Упражнение: 2 звезды (dist_exists_or)  *)
 (** Prove that existential quantification distributes over
     disjunction. *)
 
 Theorem dist_exists_or : forall (X:Type) (P Q : X -> Prop),
   (exists x, P x \/ Q x) <-> (exists x, P x) \/ (exists x, Q x).
 Proof.
-   (* FILL IN HERE *) Admitted.
+   (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)
@@ -754,23 +754,23 @@ Qed.
     propositions _inductively_, a different technique with its own set
     of strengths and limitations. *)
 
-(** **** Exercise: 2 stars (In_map_iff)  *)
+(** **** Упражнение: 2 звезды (In_map_iff)  *)
 Lemma In_map_iff :
   forall (A B : Type) (f : A -> B) (l : list A) (y : B),
     In y (map f l) <->
     exists x, f x = y /\ In x l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars (In_app_iff)  *)
+(** **** Упражнение: 2 звезды (In_app_iff)  *)
 Lemma In_app_iff : forall A l l' (a:A),
   In a (l++l') <-> In a l \/ In a l'.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, recommended (All)  *)
+(** **** Упражнение: 3 звезды, рекомендуется (All)  *)
 (** Recall that functions returning propositions can be seen as
     _properties_ of their arguments. For instance, if [P] has type
     [nat -> Prop], then [P n] states that property [P] holds of [n].
@@ -782,17 +782,17 @@ Proof.
     restate the left-hand side of [All_In].) *)
 
 Fixpoint All {T : Type} (P : T -> Prop) (l : list T) : Prop
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Lemma All_In :
   forall T (P : T -> Prop) (l : list T),
     (forall x, In x l -> P x) <->
     All P l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars (combine_odd_even)  *)
+(** **** Упражнение: 3 звезды (combine_odd_even)  *)
 (** Complete the definition of the [combine_odd_even] function below.
     It takes as arguments two properties of numbers, [Podd] and
     [Peven], and it should return a property [P] such that [P n] is
@@ -800,7 +800,7 @@ Proof.
     otherwise. *)
 
 Definition combine_odd_even (Podd Peven : nat -> Prop) : nat -> Prop
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 (** To test your definition, prove the following facts: *)
 
@@ -810,7 +810,7 @@ Theorem combine_odd_even_intro :
     (oddb n = false -> Peven n) ->
     combine_odd_even Podd Peven n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem combine_odd_even_elim_odd :
   forall (Podd Peven : nat -> Prop) (n : nat),
@@ -818,7 +818,7 @@ Theorem combine_odd_even_elim_odd :
     oddb n = true ->
     Podd n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem combine_odd_even_elim_even :
   forall (Podd Peven : nat -> Prop) (n : nat),
@@ -826,7 +826,7 @@ Theorem combine_odd_even_elim_even :
     oddb n = false ->
     Peven n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)
@@ -1039,7 +1039,7 @@ Print Assumptions function_equality_ex2.
          forall (X Y : Type) (f g : X -> Y),
                 (forall x : X, f x = g x) -> f = g *)
 
-(** **** Exercise: 4 stars (tr_rev_correct)  *)
+(** **** Упражнение: 4 звезды (tr_rev_correct)  *)
 (** One problem with the definition of the list-reversing function
     [rev] that we have is that it performs a call to [app] on each
     step; running [app] takes time asymptotically linear in the size
@@ -1062,7 +1062,7 @@ Definition tr_rev {X} (l : list X) : list X :=
     case.  Prove that the two definitions are indeed equivalent. *)
 
 Lemma tr_rev_correct : forall X, @tr_rev X = @rev X.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ================================================================= *)
@@ -1091,13 +1091,13 @@ Proof.
   - simpl. apply IHk'.
 Qed.
 
-(** **** Exercise: 3 stars (evenb_double_conv)  *)
+(** **** Упражнение: 3 звезды (evenb_double_conv)  *)
 Theorem evenb_double_conv : forall n,
   exists k, n = if evenb n then double k
                 else S (double k).
 Proof.
   (* Hint: Use the [evenb_S] lemma from [Induction.v]. *)
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 Theorem even_bool_prop : forall n,
@@ -1208,22 +1208,22 @@ Proof. apply even_bool_prop. reflexivity. Qed.
     showing the complementary strengths of booleans and general
     propositions. *)
 
-(** **** Exercise: 2 stars (logical_connectives)  *)
+(** **** Упражнение: 2 звезды (logical_connectives)  *)
 (** The following lemmas relate the propositional connectives studied
     in this chapter to the corresponding boolean operations. *)
 
 Lemma andb_true_iff : forall b1 b2:bool,
   b1 && b2 = true <-> b1 = true /\ b2 = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Lemma orb_true_iff : forall b1 b2,
   b1 || b2 = true <-> b1 = true \/ b2 = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 1 star (beq_nat_false_iff)  *)
+(** **** Упражнение: 1 звезда (beq_nat_false_iff)  *)
 (** The following theorem is an alternate "negative" formulation of
     [beq_nat_true_iff] that is more convenient in certain
     situations (we'll see examples in later chapters). *)
@@ -1231,10 +1231,10 @@ Proof.
 Theorem beq_nat_false_iff : forall x y : nat,
   beq_nat x y = false <-> x <> y.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars (beq_list)  *)
+(** **** Упражнение: 3 звезды (beq_list)  *)
 (** Given a boolean operator [beq] for testing equality of elements of
     some type [A], we can define a function [beq_list beq] for testing
     equality of lists with elements in [A].  Complete the definition
@@ -1243,17 +1243,17 @@ Proof.
 
 Fixpoint beq_list {A : Type} (beq : A -> A -> bool)
                   (l1 l2 : list A) : bool
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Lemma beq_list_true_iff :
   forall A (beq : A -> A -> bool),
     (forall a1 a2, beq a1 a2 = true <-> a1 = a2) ->
     forall l1 l2, beq_list beq l1 l2 = true <-> l1 = l2.
 Proof.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars, recommended (All_forallb)  *)
+(** **** Упражнение: 2 звезды, рекомендуется (All_forallb)  *)
 (** Recall the function [forallb], from the exercise
     [forall_exists_challenge] in chapter [Tactics]: *)
 
@@ -1269,12 +1269,12 @@ Fixpoint forallb {X : Type} (test : X -> bool) (l : list X) : bool :=
 Theorem forallb_true_iff : forall X test (l : list X),
    forallb test l = true <-> All (fun x => test x = true) l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 (** Are there any important properties of the function [forallb] which
     are not captured by this specification? *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (* ================================================================= *)
@@ -1390,7 +1390,7 @@ Qed.
     this line of reasoning cannot be encoded in Coq without assuming
     additional axioms. *)
 
-(** **** Exercise: 3 stars (excluded_middle_irrefutable)  *)
+(** **** Упражнение: 3 звезды (excluded_middle_irrefutable)  *)
 (** Proving the consistency of Coq with the general excluded middle
     axiom requires complicated reasoning that cannot be carried out
     within Coq itself.  However, the following theorem implies that it
@@ -1405,10 +1405,10 @@ Qed.
 Theorem excluded_middle_irrefutable: forall (P:Prop),
   ~ ~ (P \/ ~ P).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, advanced (not_exists_dist)  *)
+(** **** Упражнение: 3 звезды, продвинутое (not_exists_dist)  *)
 (** It is a theorem of classical logic that the following two
     assertions are equivalent:
 
@@ -1425,10 +1425,10 @@ Theorem not_exists_dist :
   forall (X:Type) (P : X -> Prop),
     ~ (exists x, ~ P x) -> (forall x, P x).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 5 stars, optional (classical_axioms)  *)
+(** **** Упражнение: 5 звезд, опциональное (classical_axioms)  *)
 (** For those who like a challenge, here is an exercise taken from the
     Coq'Art book by Bertot and Casteran (p. 123).  Each of the
     following four statements, together with [excluded_middle], can be
@@ -1451,7 +1451,7 @@ Definition de_morgan_not_and_not := forall P Q:Prop,
 Definition implies_to_or := forall P Q:Prop,
   (P->Q) -> (~P\/Q).
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (** $Date: 2017-11-14 17:52:45 -0500 (Tue, 14 Nov 2017) $ *)

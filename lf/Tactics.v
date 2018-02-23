@@ -65,7 +65,7 @@ Proof.
   intros n m eq1 eq2.
   apply eq2. apply eq1.  Qed.
 
-(** **** Exercise: 2 stars, optional (silly_ex)  *)
+(** **** Упражнение: 2 звезды, опциональное (silly_ex)  *)
 (** Complete the following proof without using [simpl]. *)
 
 Theorem silly_ex :
@@ -73,7 +73,7 @@ Theorem silly_ex :
      evenb 3 = true ->
      oddb 4 = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** To use the [apply] tactic, the (conclusion of the) fact
@@ -96,7 +96,7 @@ Proof.
             simplification first, if needed.) *)
   apply H.  Qed.
 
-(** **** Exercise: 3 stars (apply_exercise1)  *)
+(** **** Упражнение: 3 звезды (apply_exercise1)  *)
 (** (_Hint_: You can use [apply] with previously defined lemmas, not
     just hypotheses in the context.  Remember that [Search] is
     your friend.) *)
@@ -105,15 +105,15 @@ Theorem rev_exercise1 : forall (l l' : list nat),
      l = rev l' ->
      l' = rev l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 1 star, optional (apply_rewrite)  *)
+(** **** Упражнение: 1 звезда, опциональное (apply_rewrite)  *)
 (** Briefly explain the difference between the tactics [apply] and
     [rewrite].  What are the situations where both can usefully be
     applied?
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 *)
 (** [] *)
 
@@ -167,13 +167,13 @@ Proof.
     instantiation we're giving. We could instead write: [apply
     trans_eq with [c;d]]. *)
 
-(** **** Exercise: 3 stars, optional (apply_with_exercise)  *)
+(** **** Упражнение: 3 звезды, опциональное (apply_with_exercise)  *)
 Example trans_eq_exercise : forall (n m o p : nat),
      m = (minustwo o) ->
      (n + p) = m ->
      (n + p) = (minustwo o).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)
@@ -244,13 +244,13 @@ Theorem inversion_ex2 : forall (n m : nat),
 Proof.
   intros n m H. inversion H as [Hnm]. reflexivity.  Qed.
 
-(** **** Exercise: 1 star (inversion_ex3)  *)
+(** **** Упражнение: 1 звезда (inversion_ex3)  *)
 Example inversion_ex3 : forall (X : Type) (x y z : X) (l j : list X),
   x :: y :: l = z :: j ->
   y :: l = x :: j ->
   x = y.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** When used on a hypothesis involving an equality between
@@ -307,14 +307,14 @@ Proof.
     then the nonsensical conclusion would follow.  We'll explore the
     principle of explosion of more detail in the next chapter. *)
 
-(** **** Exercise: 1 star (inversion_ex6)  *)
+(** **** Упражнение: 1 звезда (inversion_ex6)  *)
 Example inversion_ex6 : forall (X : Type)
                           (x y z : X) (l j : list X),
   x :: y :: l = [] ->
   y :: l = z :: j ->
   x = z.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** To summarize this discussion, suppose [H] is a hypothesis in the
@@ -396,7 +396,7 @@ Proof.
     but in some situations the forward style can be easier to think
     about.  *)
 
-(** **** Exercise: 3 stars, recommended (plus_n_n_injective)  *)
+(** **** Упражнение: 3 звезды, рекомендуется (plus_n_n_injective)  *)
 (** Practice using "in" variants in this proof.  (Hint: use
     [plus_n_Sm].) *)
 
@@ -405,7 +405,7 @@ Theorem plus_n_n_injective : forall n m,
      n = m.
 Proof.
   intros n. induction n as [| n'].
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)
@@ -557,18 +557,18 @@ Proof.
 
 (** The following exercise requires the same pattern. *)
 
-(** **** Exercise: 2 stars (beq_nat_true)  *)
+(** **** Упражнение: 2 звезды (beq_nat_true)  *)
 Theorem beq_nat_true : forall n m,
     beq_nat n m = true -> n = m.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars, advanced (beq_nat_true_informal)  *)
+(** **** Упражнение: 2 звезды, продвинутое (beq_nat_true_informal)  *)
 (** Give a careful informal proof of [beq_nat_true], being as explicit
     as possible about quantifiers. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (** The strategy of doing fewer [intros] before an [induction] to
@@ -679,14 +679,14 @@ Proof.
   rewrite H'. reflexivity.
 Qed.
 
-(** **** Exercise: 3 stars, recommended (gen_dep_practice)  *)
+(** **** Упражнение: 3 звезды, рекомендуется (gen_dep_practice)  *)
 (** Prove this by induction on [l]. *)
 
 Theorem nth_error_after_last: forall (n : nat) (X : Type) (l : list X),
      length l = n ->
      nth_error l n = None.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)
@@ -848,7 +848,7 @@ Proof.
     in which all occurrences of [e] (in the goal and in the context)
     are replaced by [c]. *)
 
-(** **** Exercise: 3 stars, optional (combine_split)  *)
+(** **** Упражнение: 3 звезды, опциональное (combine_split)  *)
 (** Here is an implementation of the [split] function mentioned in
     chapter [Poly]: *)
 
@@ -869,7 +869,7 @@ Theorem combine_split : forall X Y (l : list (X * Y)) l1 l2,
   split l = (l1, l2) ->
   combine l1 l2 = l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** However, [destruct]ing compound expressions requires a bit of
@@ -935,12 +935,12 @@ Proof.
           rewrite -> Heqe5. reflexivity.
         + (* e5 = false *) inversion eq.  Qed.
 
-(** **** Exercise: 2 stars (destruct_eqn_practice)  *)
+(** **** Упражнение: 2 звезды (destruct_eqn_practice)  *)
 Theorem bool_fn_applied_thrice :
   forall (f : bool -> bool) (b : bool),
   f (f (f b)) = f b.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)
@@ -1009,34 +1009,34 @@ Proof.
 (* ################################################################# *)
 (** * Additional Exercises *)
 
-(** **** Exercise: 3 stars (beq_nat_sym)  *)
+(** **** Упражнение: 3 звезды (beq_nat_sym)  *)
 Theorem beq_nat_sym : forall (n m : nat),
   beq_nat n m = beq_nat m n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, advanced, optional (beq_nat_sym_informal)  *)
+(** **** Упражнение: 3 звезды, продвинутое, опциональное (beq_nat_sym_informal)  *)
 (** Give an informal proof of this lemma that corresponds to your
     formal proof above:
 
    Theorem: For any [nat]s [n] [m], [beq_nat n m = beq_nat m n].
 
    Proof:
-   (* FILL IN HERE *)
+   (* ЗАПОЛНИТЕ *)
 *)
 (** [] *)
 
-(** **** Exercise: 3 stars, optional (beq_nat_trans)  *)
+(** **** Упражнение: 3 звезды, опциональное (beq_nat_trans)  *)
 Theorem beq_nat_trans : forall n m p,
   beq_nat n m = true ->
   beq_nat m p = true ->
   beq_nat n p = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, advanced (split_combine)  *)
+(** **** Упражнение: 3 звезды, продвинутое (split_combine)  *)
 (** We proved, in an exercise above, that for all lists of pairs,
     [combine] is the inverse of [split].  How would you formalize the
     statement that [split] is the inverse of [combine]?  When is this
@@ -1052,15 +1052,15 @@ Proof.
 Definition split_combine_statement : Prop
   (* ("[: Prop]" means that we are giving a name to a
      logical proposition here.) *)
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Theorem split_combine : split_combine_statement.
 Proof.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 
 (** [] *)
 
-(** **** Exercise: 3 stars, advanced (filter_exercise)  *)
+(** **** Упражнение: 3 звезды, продвинутое (filter_exercise)  *)
 (** This one is a bit challenging.  Pay attention to the form of your
     induction hypothesis. *)
 
@@ -1069,10 +1069,10 @@ Theorem filter_exercise : forall (X : Type) (test : X -> bool)
      filter test l = x :: lf ->
      test x = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 4 stars, advanced, recommended (forall_exists_challenge)  *) 
+(** **** Упражнение: 4 звезды, продвинутое, рекомендуется (forall_exists_challenge)  *) 
 (** Define two recursive [Fixpoints], [forallb] and [existsb].  The
     first checks whether every element in a list satisfies a given
     predicate:
@@ -1102,7 +1102,7 @@ Proof.
     Finally, prove a theorem [existsb_existsb'] stating that
     [existsb'] and [existsb] have the same behavior. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (** $Date: 2018-01-13 16:44:48 -0500 (Sat, 13 Jan 2018) $ *)

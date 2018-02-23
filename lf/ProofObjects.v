@@ -170,15 +170,15 @@ Print ev_4''.
 Print ev_4'''.
 (* ===> ev_4''' =   ev_SS 2 (ev_SS 0 ev_0) : ev 4 *)
 
-(** **** Exercise: 2 stars (eight_is_even)  *)
+(** **** Упражнение: 2 звезды (eight_is_even)  *)
 (** Give a tactic proof and a proof object showing that [ev 8]. *)
 
 Theorem ev_8 : ev 8.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Definition ev_8' : ev 8 
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 (** [] *)
 
 (* ################################################################# *)
@@ -375,11 +375,11 @@ Definition and_comm'_aux P Q (H : P /\ Q) :=
 Definition and_comm' P Q : P /\ Q <-> Q /\ P :=
   conj (and_comm'_aux P Q) (and_comm'_aux Q P).
 
-(** **** Exercise: 2 stars, optional (conj_fact)  *)
+(** **** Упражнение: 2 звезды, опциональное (conj_fact)  *)
 (** Construct a proof object demonstrating the following proposition. *)
 
 Definition conj_fact : forall P Q R, P /\ Q -> Q /\ R -> P /\ R 
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 (** [] *)
 
 
@@ -404,12 +404,12 @@ End Or.
     Once again, we can also directly write proof objects for theorems
     involving [or], without resorting to tactics. *)
 
-(** **** Exercise: 2 stars, optional (or_commut'')  *)
+(** **** Упражнение: 2 звезды, опциональное (or_commut'')  *)
 (** Try to write down an explicit proof object for [or_commut] (without
     using [Print] to peek at the ones we already defined!). *)
 
 Definition or_comm : forall P Q, P \/ Q -> Q \/ P 
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 (** [] *)
 
 (** ** Existential Quantification
@@ -444,11 +444,11 @@ Check ex (fun n => ev n).
 Definition some_nat_is_even : exists n, ev n :=
   ex_intro ev 4 (ev_SS 2 (ev_SS 0 ev_0)).
 
-(** **** Exercise: 2 stars, optional (ex_ev_Sn)  *)
+(** **** Упражнение: 2 звезды, опциональное (ex_ev_Sn)  *)
 (** Complete the definition of the following proof object: *)
 
 Definition ex_ev_Sn : ex (fun n => ev (S n)) 
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 (** [] *)
 
 (* ================================================================= *)
@@ -531,7 +531,7 @@ Definition singleton : forall (X:Type) (x:X), []++[x] = x::[]  :=
 End MyEquality.
 
 
-(** **** Exercise: 2 stars (equality__leibniz_equality)  *)
+(** **** Упражнение: 2 звезды (equality__leibniz_equality)  *)
 (** The inductive definition of equality implies _Leibniz equality_:
     what we mean when we say "[x] and [y] are equal" is that every
     property on [P] that is true of [x] is also true of [y].  *)
@@ -539,17 +539,17 @@ End MyEquality.
 Lemma equality__leibniz_equality : forall (X : Type) (x y: X),
   x = y -> forall P:X->Prop, P x -> P y.
 Proof.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 5 stars, optional (leibniz_equality__equality)  *)
+(** **** Упражнение: 5 звезд, опциональное (leibniz_equality__equality)  *)
 (** Show that, in fact, the inductive definition of equality is
     _equivalent_ to Leibniz equality: *)
 
 Lemma leibniz_equality__equality : forall (X : Type) (x y: X),
   (forall P:X->Prop, P x -> P y) -> x = y.
 Proof.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ================================================================= *)

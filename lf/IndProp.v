@@ -126,11 +126,11 @@ Qed.
 
 (** More generally, we can show that any number multiplied by 2 is even: *)
 
-(** **** Exercise: 1 star (ev_double)  *)
+(** **** Упражнение: 1 звезда (ev_double)  *)
 Theorem ev_double : forall n,
   ev (double n).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)
@@ -268,22 +268,22 @@ Theorem one_not_even : ~ ev 1.
 Proof.
   intros H. inversion H. Qed.
 
-(** **** Exercise: 1 star (SSSSev__even)  *)
+(** **** Упражнение: 1 звезда (SSSSev__even)  *)
 (** Prove the following result using [inversion]. *)
 
 Theorem SSSSev__even : forall n,
   ev (S (S (S (S n)))) -> ev n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 1 star (even5_nonsense)  *)
+(** **** Упражнение: 1 звезда (even5_nonsense)  *)
 (** Prove the following result using [inversion]. *)
 
 Theorem even5_nonsense :
   ev 5 -> 2 + 2 = 9.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** The way we've used [inversion] here may seem a bit
@@ -406,13 +406,13 @@ Qed.
 (** The following exercises provide simple examples of this
     technique, to help you familiarize yourself with it. *)
 
-(** **** Exercise: 2 stars (ev_sum)  *)
+(** **** Упражнение: 2 звезды (ev_sum)  *)
 Theorem ev_sum : forall n m, ev n -> ev m -> ev (n + m).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 4 stars, advanced, optional (ev'_ev)  *)
+(** **** Упражнение: 4 звезды, продвинутое, опциональное (ev'_ev)  *)
 (** In general, there may be multiple ways of defining a
     property inductively.  For example, here's a (slightly contrived)
     alternative definition for [ev]: *)
@@ -428,20 +428,20 @@ Inductive ev' : nat -> Prop :=
 
 Theorem ev'_ev : forall n, ev' n <-> ev n.
 Proof.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, advanced, recommended (ev_ev__ev)  *)
+(** **** Упражнение: 3 звезды, продвинутое, рекомендуется (ev_ev__ev)  *)
 (** Finding the appropriate thing to do induction on is a
     bit tricky here: *)
 
 Theorem ev_ev__ev : forall n m,
   ev (n+m) -> ev n -> ev m.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, optional (ev_plus_plus)  *)
+(** **** Упражнение: 3 звезды, опциональное (ev_plus_plus)  *)
 (** This exercise just requires applying existing lemmas.  No
     induction or even case analysis is needed, though some of the
     rewriting may be tedious. *)
@@ -449,7 +449,7 @@ Proof.
 Theorem ev_plus_plus : forall n m p,
   ev (n+m) -> ev (n+p) -> ev (m+p).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)
@@ -533,66 +533,66 @@ Inductive next_even : nat -> nat -> Prop :=
   | ne_1 : forall n, ev (S n) -> next_even n (S n)
   | ne_2 : forall n, ev (S (S n)) -> next_even n (S (S n)).
 
-(** **** Exercise: 2 stars, optional (total_relation)  *)
+(** **** Упражнение: 2 звезды, опциональное (total_relation)  *)
 (** Define an inductive binary relation [total_relation] that holds
     between every pair of natural numbers. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 2 stars, optional (empty_relation)  *)
+(** **** Упражнение: 2 звезды, опциональное (empty_relation)  *)
 (** Define an inductive binary relation [empty_relation] (on numbers)
     that never holds. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 3 stars, optional (le_exercises)  *)
+(** **** Упражнение: 3 звезды, опциональное (le_exercises)  *)
 (** Here are a number of facts about the [<=] and [<] relations that
     we are going to need later in the course.  The proofs make good
     practice exercises. *)
 
 Lemma le_trans : forall m n o, m <= n -> n <= o -> m <= o.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem O_le_n : forall n,
   0 <= n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem n_le_m__Sn_le_Sm : forall n m,
   n <= m -> S n <= S m.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem Sn_le_Sm__n_le_m : forall n m,
   S n <= S m -> n <= m.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem le_plus_l : forall a b,
   a <= a + b.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem plus_lt : forall n1 n2 m,
   n1 + n2 < m ->
   n1 < m /\ n2 < m.
 Proof.
  unfold lt.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem lt_S : forall n m,
   n < m ->
   n < S m.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem leb_complete : forall n m,
   leb n m = true -> n <= m.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 (** Hint: The next one may be easiest to prove by induction on [m]. *)
 
@@ -600,26 +600,26 @@ Theorem leb_correct : forall n m,
   n <= m ->
   leb n m = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 (** Hint: This theorem can easily be proved without using [induction]. *)
 
 Theorem leb_true_trans : forall n m o,
   leb n m = true -> leb m o = true -> leb n o = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars, optional (leb_iff)  *)
+(** **** Упражнение: 2 звезды, опциональное (leb_iff)  *)
 Theorem leb_iff : forall n m,
   leb n m = true <-> n <= m.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 Module R.
 
-(** **** Exercise: 3 stars, recommended (R_provability)  *)
+(** **** Упражнение: 3 звезды, рекомендуется (R_provability)  *)
 (** We can define three-place relations, four-place relations,
     etc., in just the same way as binary relations.  For example,
     consider the following three-place relation on numbers: *)
@@ -643,26 +643,26 @@ Inductive R : nat -> nat -> nat -> Prop :=
       would the set of provable propositions change?  Briefly (1
       sentence) explain your answer.
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 *)
 (** [] *)
 
-(** **** Exercise: 3 stars, optional (R_fact)  *)
+(** **** Упражнение: 3 звезды, опциональное (R_fact)  *)
 (** The relation [R] above actually encodes a familiar function.
     Figure out which function; then state and prove this equivalence
     in Coq? *)
 
 Definition fR : nat -> nat -> nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Theorem R_equiv_fR : forall m n o, R m n o <-> fR m n = o.
 Proof.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 End R.
 
-(** **** Exercise: 4 stars, advanced (subsequence)  *)
+(** **** Упражнение: 4 звезды, продвинутое (subsequence)  *)
 (** A list is a _subsequence_ of another list if all of the elements
     in the first list occur in the same order in the second list,
     possibly with some extra elements in between. For example,
@@ -698,10 +698,10 @@ End R.
       is a subsequence of [l3], then [l1] is a subsequence of [l3].
       Hint: choose your induction carefully! *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 2 stars, optional (R_provability2)  *)
+(** **** Упражнение: 2 звезды, опциональное (R_provability2)  *)
 (** Suppose we give Coq the following definition:
 
     Inductive R : nat -> list nat -> Prop :=
@@ -918,7 +918,7 @@ Qed.
 (** (Note the use of [app_nil_r] to change the goal of the theorem to
     exactly the same shape expected by [MStarApp].) *)
 
-(** **** Exercise: 3 stars (exp_match_ex1)  *)
+(** **** Упражнение: 3 звезды (exp_match_ex1)  *)
 (** The following lemmas show that the informal matching rules given
     at the beginning of the chapter can be obtained from the formal
     inductive definition. *)
@@ -926,13 +926,13 @@ Qed.
 Lemma empty_is_empty : forall T (s : list T),
   ~ (s =~ EmptySet).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Lemma MUnion' : forall T (s : list T) (re1 re2 : @reg_exp T),
   s =~ re1 \/ s =~ re2 ->
   s =~ Union re1 re2.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 (** The next lemma is stated in terms of the [fold] function from the
     [Poly] chapter: If [ss : list (list T)] represents a sequence of
@@ -943,10 +943,10 @@ Lemma MStar' : forall T (ss : list (list T)) (re : reg_exp),
   (forall s, In s ss -> s =~ re) ->
   fold app ss [] =~ Star re.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 4 stars, optional (reg_exp_of_list_spec)  *)
+(** **** Упражнение: 4 звезды, опциональное (reg_exp_of_list_spec)  *)
 (** Prove that [reg_exp_of_list] satisfies the following
     specification: *)
 
@@ -954,7 +954,7 @@ Proof.
 Lemma reg_exp_of_list_spec : forall T (s1 s2 : list T),
   s1 =~ reg_exp_of_list s2 <-> s1 = s2.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** Since the definition of [exp_match] has a recursive
@@ -1031,18 +1031,18 @@ Proof.
       apply (IH2 Hin).
 Qed.
 
-(** **** Exercise: 4 stars (re_not_empty)  *)
+(** **** Упражнение: 4 звезды (re_not_empty)  *)
 (** Write a recursive function [re_not_empty] that tests whether a
     regular expression matches some string. Prove that your function
     is correct. *)
 
 Fixpoint re_not_empty {T : Type} (re : @reg_exp T) : bool
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Lemma re_not_empty_correct : forall T (re : @reg_exp T),
   (exists s, s =~ re) <-> re_not_empty re = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ================================================================= *)
@@ -1168,7 +1168,7 @@ Proof.
       * apply H1.
 Qed.
 
-(** **** Exercise: 4 stars, optional (exp_match_ex2)  *)
+(** **** Упражнение: 4 звезды, опциональное (exp_match_ex2)  *)
 
 (** The [MStar''] lemma below (combined with its converse, the
     [MStar'] exercise above), shows that our definition of [exp_match]
@@ -1180,10 +1180,10 @@ Lemma MStar'' : forall T (s : list T) (re : reg_exp),
     s = fold app ss []
     /\ forall s', In s' ss -> s' =~ re.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 5 stars, advanced (pumping)  *)
+(** **** Упражнение: 5 звезд, продвинутое (pumping)  *)
 (** One of the first really interesting theorems in the theory of
     regular expressions is the so-called _pumping lemma_, which
     states, informally, that any sufficiently long string [s] matching
@@ -1263,7 +1263,7 @@ Proof.
        | re | s1 s2 re Hmatch1 IH1 Hmatch2 IH2 ].
   - (* MEmpty *)
     simpl. omega.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 End Pumping.
 (** [] *)
@@ -1332,10 +1332,10 @@ Proof.
   - apply ReflectF. rewrite H. intros H'. inversion H'.
 Qed.
 
-(** **** Exercise: 2 stars, recommended (reflect_iff)  *)
+(** **** Упражнение: 2 звезды, рекомендуется (reflect_iff)  *)
 Theorem reflect_iff : forall P b, reflect P b -> (P <-> b = true).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** The advantage of [reflect] over the normal "if and only if"
@@ -1374,7 +1374,7 @@ Proof.
       intros H'. right. apply IHl'. apply H'.
 Qed.
 
-(** **** Exercise: 3 stars, recommended (beq_natP_practice)  *)
+(** **** Упражнение: 3 звезды, рекомендуется (beq_natP_practice)  *)
 (** Use [beq_natP] as above to prove the following: *)
 
 Fixpoint count n l :=
@@ -1386,7 +1386,7 @@ Fixpoint count n l :=
 Theorem beq_natP_practice : forall n l,
   count n l = 0 -> ~(In n l).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** In this small example, this technique gives us only a rather small
@@ -1406,7 +1406,7 @@ Proof.
 (* ################################################################# *)
 (** * Additional Exercises *)
 
-(** **** Exercise: 3 stars, recommended (nostutter_defn)  *)
+(** **** Упражнение: 3 звезды, рекомендуется (nostutter_defn)  *)
 (** Formulating inductive definitions of properties is an important
     skill you'll need in this course.  Try to solve this exercise
     without any help at all.
@@ -1419,7 +1419,7 @@ Proof.
     [nostutter]. *)
 
 Inductive nostutter {X:Type} : list X -> Prop :=
- (* FILL IN HERE *)
+ (* ЗАПОЛНИТЕ *)
 .
 (** Make sure each of these tests succeeds, but feel free to change
     the suggested proof (in comments) if the given one doesn't work
@@ -1432,27 +1432,27 @@ Inductive nostutter {X:Type} : list X -> Prop :=
     example with more basic tactics.)  *)
 
 Example test_nostutter_1: nostutter [3;1;4;1;5;6].
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (* 
   Proof. repeat constructor; apply beq_nat_false_iff; auto.
   Qed.
 *)
 
 Example test_nostutter_2:  nostutter (@nil nat).
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (* 
   Proof. repeat constructor; apply beq_nat_false_iff; auto.
   Qed.
 *)
 
 Example test_nostutter_3:  nostutter [5].
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (* 
   Proof. repeat constructor; apply beq_nat_false; auto. Qed.
 *)
 
 Example test_nostutter_4:      not (nostutter [3;1;1;4]).
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (* 
   Proof. intro.
   repeat match goal with
@@ -1462,7 +1462,7 @@ Example test_nostutter_4:      not (nostutter [3;1;1;4]).
 *)
 (** [] *)
 
-(** **** Exercise: 4 stars, advanced (filter_challenge)  *)
+(** **** Упражнение: 4 звезды, продвинутое (filter_challenge)  *)
 (** Let's prove that our definition of [filter] from the [Poly]
     chapter matches an abstract specification.  Here is the
     specification, written out informally in English:
@@ -1492,19 +1492,19 @@ Example test_nostutter_4:      not (nostutter [3;1;1;4]).
     to be a merge of two others.  Do this with an inductive relation,
     not a [Fixpoint].)  *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 5 stars, advanced, optional (filter_challenge_2)  *)
+(** **** Упражнение: 5 звезд, продвинутое, опциональное (filter_challenge_2)  *)
 (** A different way to characterize the behavior of [filter] goes like
     this: Among all subsequences of [l] with the property that [test]
     evaluates to [true] on all their members, [filter test l] is the
     longest.  Formalize this claim and prove it. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 4 stars, optional (palindromes)  *)
+(** **** Упражнение: 4 звезды, опциональное (palindromes)  *)
 (** A palindrome is a sequence that reads the same backwards as
     forwards.
 
@@ -1526,10 +1526,10 @@ Example test_nostutter_4:      not (nostutter [3;1;1;4]).
        forall l, pal l -> l = rev l.
 *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 5 stars, optional (palindrome_converse)  *)
+(** **** Упражнение: 5 звезд, опциональное (palindrome_converse)  *)
 (** Again, the converse direction is significantly more difficult, due
     to the lack of evidence.  Using your definition of [pal] from the
     previous exercise, prove that
@@ -1537,10 +1537,10 @@ Example test_nostutter_4:      not (nostutter [3;1;1;4]).
      forall l, l = rev l -> pal l.
 *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 4 stars, advanced, optional (NoDup)  *)
+(** **** Упражнение: 4 звезды, продвинутое, опциональное (NoDup)  *)
 (** Recall the definition of the [In] property from the [Logic]
     chapter, which asserts that a value [x] appears at least once in a
     list [l]: *)
@@ -1556,7 +1556,7 @@ Example test_nostutter_4:      not (nostutter [3;1;1;4]).
     lists (with elements of type X) that have no elements in
     common. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 
 (** Next, use [In] to define an inductive proposition [NoDup X
     l], which should be provable exactly when [l] is a list (with
@@ -1565,15 +1565,15 @@ Example test_nostutter_4:      not (nostutter [3;1;1;4]).
     bool []] should be provable, while [NoDup nat [1;2;1]] and
     [NoDup bool [true;true]] should not be.  *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 
 (** Finally, state and prove one or more interesting theorems relating
     [disjoint], [NoDup] and [++] (list append).  *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 4 stars, advanced, optional (pigeonhole_principle)  *)
+(** **** Упражнение: 4 звезды, продвинутое, опциональное (pigeonhole_principle)  *)
 (** The _pigeonhole principle_ states a basic fact about counting: if
     we distribute more than [n] items into [n] pigeonholes, some
     pigeonhole must contain at least two items.  As often happens, this
@@ -1586,13 +1586,13 @@ Lemma in_split : forall (X:Type) (x:X) (l:list X),
   In x l ->
   exists l1 l2, l = l1 ++ x :: l2.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 (** Now define a property [repeats] such that [repeats X l] asserts
     that [l] contains at least one repeated element (of type [X]).  *)
 
 Inductive repeats {X:Type} : list X -> Prop :=
-  (* FILL IN HERE *)
+  (* ЗАПОЛНИТЕ *)
 .
 
 (** Now, here's a way to formalize the pigeonhole principle.  Suppose
@@ -1615,7 +1615,7 @@ Theorem pigeonhole_principle: forall (X:Type) (l1  l2:list X),
    repeats l1.
 Proof.
    intros X l1. induction l1 as [|x l1' IHl1'].
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 

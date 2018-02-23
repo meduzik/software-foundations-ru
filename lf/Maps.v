@@ -210,15 +210,15 @@ Proof. reflexivity. Qed.
 (** (Some of the proofs require the functional extensionality axiom,
     which is discussed in the [Logic] chapter.) *)
 
-(** **** Exercise: 1 star, optional (t_apply_empty)  *)
+(** **** Упражнение: 1 звезда, опциональное (t_apply_empty)  *)
 (** First, the empty map returns its default element for all keys: *)
 
 Lemma t_apply_empty:  forall (A:Type) (x: string) (v: A), { --> v } x = v.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars, optional (t_update_eq)  *)
+(** **** Упражнение: 2 звезды, опциональное (t_update_eq)  *)
 (** Next, if we update a map [m] at a key [x] with a new value [v]
     and then look up [x] in the map resulting from the [update], we
     get back [v]: *)
@@ -226,10 +226,10 @@ Proof.
 Lemma t_update_eq : forall A (m: total_map A) x v,
   (m & {x --> v}) x = v.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars, optional (t_update_neq)  *)
+(** **** Упражнение: 2 звезды, опциональное (t_update_neq)  *)
 (** On the other hand, if we update a map [m] at a key [x1] and then
     look up a _different_ key [x2] in the resulting map, we get the
     same result that [m] would have given: *)
@@ -239,10 +239,10 @@ Theorem t_update_neq : forall (X:Type) v x1 x2
   x1 <> x2 ->
   (m & {x1 --> v}) x2 = m x2.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars, optional (t_update_shadow)  *)
+(** **** Упражнение: 2 звезды, опциональное (t_update_shadow)  *)
 (** If we update a map [m] at a key [x] with a value [v1] and then
     update again with the same key [x] and another value [v2], the
     resulting map behaves the same (gives the same result when applied
@@ -252,7 +252,7 @@ Proof.
 Lemma t_update_shadow : forall A (m: total_map A) v1 v2 x,
     m & {x --> v1 ; x --> v2} = m & {x --> v2}.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** For the final two lemmas about total maps, it's convenient to use
@@ -260,13 +260,13 @@ Proof.
     by proving a fundamental _reflection lemma_ relating the equality
     proposition on [id]s with the boolean function [beq_id]. *)
 
-(** **** Exercise: 2 stars, optional (beq_stringP)  *)
+(** **** Упражнение: 2 звезды, опциональное (beq_stringP)  *)
 (** Use the proof of [beq_natP] in chapter [IndProp] as a template to
     prove the following: *)
 
 Lemma beq_stringP : forall x y, reflect (x = y) (beq_string x y).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** Now, given [string]s [x1] and [x2], we can use the [destruct (beq_stringP
@@ -274,7 +274,7 @@ Proof.
     [beq_string x1 x2] and generate hypotheses about the equality (in the
     sense of [=]) of [x1] and [x2]. *)
 
-(** **** Exercise: 2 stars (t_update_same)  *)
+(** **** Упражнение: 2 звезды (t_update_same)  *)
 (** With the example in chapter [IndProp] as a template, use
     [beq_stringP] to prove the following theorem, which states that if we
     update a map to assign key [x] the same value as it already has in
@@ -283,10 +283,10 @@ Proof.
 Theorem t_update_same : forall X x (m : total_map X),
     m & { x --> m x } = m.
   Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, recommended (t_update_permute)  *)
+(** **** Упражнение: 3 звезды, рекомендуется (t_update_permute)  *)
 (** Use [beq_stringP] to prove one final property of the [update]
     function: If we update a map [m] at two distinct keys, it doesn't
     matter in which order we do the updates. *)
@@ -297,7 +297,7 @@ Theorem t_update_permute : forall (X:Type) v1 v2 x1 x2
   m & { x2 --> v2 ; x1 --> v1 }
   =  m & { x1 --> v1 ; x2 --> v2 }.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)

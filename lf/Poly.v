@@ -140,7 +140,7 @@ Proof. reflexivity.  Qed.
 
 Module MumbleGrumble.
 
-(** **** Exercise: 2 stars (mumble_grumble)  *)
+(** **** Упражнение: 2 звезды (mumble_grumble)  *)
 (** Consider the following two inductively defined types. *)
 
 Inductive mumble : Type :=
@@ -161,7 +161,7 @@ Inductive grumble (X:Type) : Type :=
       - [e mumble (b c 0)]
       - [e bool (b c 0)]
       - [c]
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 *)
 (** [] *)
 
@@ -396,38 +396,38 @@ Definition list123''' := [1; 2; 3].
 (* ----------------------------------------------------------------- *)
 (** *** Exercises *)
 
-(** **** Exercise: 2 stars, optional (poly_exercises)  *)
+(** **** Упражнение: 2 звезды, опциональное (poly_exercises)  *)
 (** Here are a few simple exercises, just like ones in the [Lists]
     chapter, for practice with polymorphism.  Complete the proofs below. *)
 
 Theorem app_nil_r : forall (X:Type), forall l:list X,
   l ++ [] = l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem app_assoc : forall A (l m n:list A),
   l ++ m ++ n = (l ++ m) ++ n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Lemma app_length : forall (X:Type) (l1 l2 : list X),
   length (l1 ++ l2) = length l1 + length l2.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars, optional (more_poly_exercises)  *)
+(** **** Упражнение: 2 звезды, опциональное (more_poly_exercises)  *)
 (** Here are some slightly more interesting ones... *)
 
 Theorem rev_app_distr: forall X (l1 l2 : list X),
   rev (l1 ++ l2) = rev l2 ++ rev l1.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem rev_involutive : forall X : Type, forall l : list X,
   rev (rev l) = l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ================================================================= *)
@@ -487,7 +487,7 @@ Fixpoint combine {X Y : Type} (lx : list X) (ly : list Y)
   | x :: tx, y :: ty => (x, y) :: (combine tx ty)
   end.
 
-(** **** Exercise: 1 star, optional (combine_checks)  *)
+(** **** Упражнение: 1 звезда, опциональное (combine_checks)  *)
 (** Try answering the following questions on paper and
     checking your answers in coq:
     - What is the type of [combine] (i.e., what does [Check
@@ -499,7 +499,7 @@ Fixpoint combine {X Y : Type} (lx : list X) (ly : list Y)
       print? *)
 (** [] *)
 
-(** **** Exercise: 2 stars, recommended (split)  *)
+(** **** Упражнение: 2 звезды, рекомендуется (split)  *)
 (** The function [split] is the right inverse of [combine]: it takes a
     list of pairs and returns a pair of lists.  In many functional
     languages, it is called [unzip].
@@ -509,12 +509,12 @@ Fixpoint combine {X Y : Type} (lx : list X) (ly : list Y)
 
 Fixpoint split {X Y : Type} (l : list (X*Y))
                : (list X) * (list Y)
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_split:
   split [(1,false);(2,false)] = ([1;2],[false;false]).
 Proof.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ================================================================= *)
@@ -547,13 +547,13 @@ Proof. reflexivity. Qed.
 Example test_nth_error3 : nth_error [true] 2 = None.
 Proof. reflexivity. Qed.
 
-(** **** Exercise: 1 star, optional (hd_error_poly)  *)
+(** **** Упражнение: 1 звезда, опциональное (hd_error_poly)  *)
 (** Complete the definition of a polymorphic version of the
     [hd_error] function from the last chapter. Be sure that it
     passes the unit tests below. *)
 
 Definition hd_error {X : Type} (l : list X) : option X
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 (** Once again, to force the implicit arguments to be explicit,
     we can use [@] before the name of the function. *)
@@ -561,9 +561,9 @@ Definition hd_error {X : Type} (l : list X) : option X
 Check @hd_error.
 
 Example test_hd_error1 : hd_error [1;2] = Some 1.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 Example test_hd_error2 : hd_error  [[1];[2]]  = Some [1].
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)
@@ -674,25 +674,25 @@ Example test_filter2':
   = [ [3]; [4]; [8] ].
 Proof. reflexivity.  Qed.
 
-(** **** Exercise: 2 stars (filter_even_gt7)  *)
+(** **** Упражнение: 2 звезды (filter_even_gt7)  *)
 (** Use [filter] (instead of [Fixpoint]) to write a Coq function
     [filter_even_gt7] that takes a list of natural numbers as input
     and returns a list of just those that are even and greater than
     7. *)
 
 Definition filter_even_gt7 (l : list nat) : list nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_filter_even_gt7_1 :
   filter_even_gt7 [1;2;6;9;10;3;12;8] = [10;12;8].
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_filter_even_gt7_2 :
   filter_even_gt7 [5;2;6;19;129] = [].
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars (partition)  *)
+(** **** Упражнение: 3 звезды (partition)  *)
 (** Use [filter] to write a Coq function [partition]:
 
       partition : forall X : Type,
@@ -710,12 +710,12 @@ Definition partition {X : Type}
                      (test : X -> bool)
                      (l : list X)
                    : list X * list X
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_partition1: partition oddb [1;2;3;4;5] = ([1;3;5], [2;4]).
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 Example test_partition2: partition (fun x => false) [5;9;0] = ([], [5;9;0]).
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ================================================================= *)
@@ -757,17 +757,17 @@ Proof. reflexivity.  Qed.
 (* ----------------------------------------------------------------- *)
 (** *** Exercises *)
 
-(** **** Exercise: 3 stars (map_rev)  *)
+(** **** Упражнение: 3 звезды (map_rev)  *)
 (** Show that [map] and [rev] commute.  You may need to define an
     auxiliary lemma. *)
 
 Theorem map_rev : forall (X Y : Type) (f : X -> Y) (l : list X),
   map f (rev l) = rev (map f l).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars, recommended (flat_map)  *)
+(** **** Упражнение: 2 звезды, рекомендуется (flat_map)  *)
 (** The function [map] maps a [list X] to a [list Y] using a function
     of type [X -> Y].  We can define a similar function, [flat_map],
     which maps a [list X] to a [list Y] using a function [f] of type
@@ -780,12 +780,12 @@ Proof.
 
 Fixpoint flat_map {X Y:Type} (f:X -> list Y) (l:list X)
                    : (list Y)
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_flat_map1:
   flat_map (fun n => [n;n;n]) [1;5;4]
   = [1; 1; 1; 5; 5; 5; 4; 4; 4].
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** Lists are not the only inductive type that we can write a
@@ -799,7 +799,7 @@ Definition option_map {X Y : Type} (f : X -> Y) (xo : option X)
     | Some x => Some (f x)
   end.
 
-(** **** Exercise: 2 stars, optional (implicit_args)  *)
+(** **** Упражнение: 2 звезды, опциональное (implicit_args)  *)
 (** The definitions and uses of [filter] and [map] use implicit
     arguments in many places.  Replace the curly braces around the
     implicit arguments with parentheses, and then fill in explicit
@@ -855,14 +855,14 @@ Example fold_example3 :
   fold app  [[1];[];[2;3];[4]] [] = [1;2;3;4].
 Proof. reflexivity. Qed.
 
-(** **** Exercise: 1 star, advanced (fold_types_different)  *)
+(** **** Упражнение: 1 звезда, продвинутое (fold_types_different)  *)
 (** Observe that the type of [fold] is parameterized by _two_ type
     variables, [X] and [Y], and the parameter [f] is a binary operator
     that takes an [X] and a [Y] and returns a [Y].  Can you think of a
     situation where it would be useful for [X] and [Y] to be
     different? *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (* ================================================================= *)
@@ -918,7 +918,7 @@ Proof. reflexivity.  Qed.
 
 Module Exercises.
 
-(** **** Exercise: 2 stars (fold_length)  *)
+(** **** Упражнение: 2 звезды (fold_length)  *)
 (** Many common functions on lists can be implemented in terms of
    [fold].  For example, here is an alternative definition of [length]: *)
 
@@ -933,23 +933,23 @@ Proof. reflexivity. Qed.
 Theorem fold_length_correct : forall X (l : list X),
   fold_length l = length l.
 Proof.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars (fold_map)  *)
+(** **** Упражнение: 3 звезды (fold_map)  *)
 (** We can also define [map] in terms of [fold].  Finish [fold_map]
     below. *)
 
 Definition fold_map {X Y:Type} (f : X -> Y) (l : list X) : list Y
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 (** Write down a theorem [fold_map_correct] in Coq stating that
    [fold_map] is correct, and prove it. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 2 stars, advanced (currying)  *)
+(** **** Упражнение: 2 звезды, продвинутое (currying)  *)
 (** In Coq, a function [f : A -> B -> C] really has the type [A
     -> (B -> C)].  That is, if you give [f] a value of type [A], it
     will give you function [f' : B -> C].  If you then give [f'] a
@@ -973,7 +973,7 @@ Definition prod_curry {X Y Z : Type}
 
 Definition prod_uncurry {X Y Z : Type}
   (f : X -> Y -> Z) (p : X * Y) : Z
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 (** As a (trivial) example of the usefulness of currying, we can use it
     to shorten one of the examples that we saw above: *)
@@ -981,7 +981,7 @@ Definition prod_uncurry {X Y Z : Type}
 Example test_map1': map (plus 3) [2;0;2] = [5;3;5].
 Proof. reflexivity.  Qed.
 
-(** Thought exercise: before running the following commands, can you
+(** Thought Упражнение: before running the following commands, can you
     calculate the types of [prod_curry] and [prod_uncurry]? *)
 
 Check @prod_curry.
@@ -992,16 +992,16 @@ Theorem uncurry_curry : forall (X Y Z : Type)
                         x y,
   prod_curry (prod_uncurry f) x y = f x y.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem curry_uncurry : forall (X Y Z : Type)
                         (f : (X * Y) -> Z) (p : X * Y),
   prod_uncurry (prod_curry f) p = f p.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars, advanced (nth_error_informal)  *)
+(** **** Упражнение: 2 звезды, продвинутое (nth_error_informal)  *)
 (** Recall the definition of the [nth_error] function:
 
    Fixpoint nth_error {X : Type} (l : list X) (n : nat) : option X :=
@@ -1014,11 +1014,11 @@ Proof.
 
    forall X n l, length l = n -> @nth_error X l n = None
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 *)
 (** [] *)
 
-(** **** Exercise: 4 stars, advanced (church_numerals)  *)
+(** **** Упражнение: 4 звезды, продвинутое (church_numerals)  *)
 (** This exercise explores an alternative way of defining natural
     numbers, using the so-called _Church numerals_, named after
     mathematician Alonzo Church.  We can represent a natural number
@@ -1060,45 +1060,45 @@ Definition three : nat := @doit3times.
 (** Successor of a natural number: *)
 
 Definition succ (n : nat) : nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example succ_1 : succ zero = one.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 Example succ_2 : succ one = two.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 Example succ_3 : succ two = three.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 (** Addition of two natural numbers: *)
 
 Definition plus (n m : nat) : nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example plus_1 : plus zero one = one.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 Example plus_2 : plus two three = plus three two.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 Example plus_3 :
   plus (plus two two) three = plus one (plus three three).
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 (** Multiplication: *)
 
 Definition mult (n m : nat) : nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example mult_1 : mult one one = one.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 Example mult_2 : mult zero (plus three three) = zero.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 Example mult_3 : mult two three = plus three three.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 (** Exponentiation: *)
 
@@ -1108,16 +1108,16 @@ Proof. (* FILL IN HERE *) Admitted.
     type: [nat] itself is usually problematic.) *)
 
 Definition exp (n m : nat) : nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example exp_1 : exp two two = plus two two.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 Example exp_2 : exp three two = plus (mult two (mult two two)) one.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 Example exp_3 : exp three zero = one.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. (* ЗАПОЛНИТЕ *) Admitted.
 
 End Church.
 (** [] *)

@@ -194,13 +194,13 @@ Definition test_ceval (st:state) (c:com) :=
    ====>
       Some (2, 0, 4)   *)
 
-(** **** Exercise: 2 stars, recommended (pup_to_n)  *)
+(** **** Упражнение: 2 звезды, рекомендуется (pup_to_n)  *)
 (** Write an Imp program that sums the numbers from [1] to
    [X] (inclusive: [1 + 2 + ... + X]) in the variable [Y].  Make sure
    your solution satisfies the test that follows. *)
 
 Definition pup_to_n : com
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 (* 
 
@@ -211,12 +211,12 @@ Proof. reflexivity. Qed.
 *)
 (** [] *)
 
-(** **** Exercise: 2 stars, optional (peven)  *)
+(** **** Упражнение: 2 звезды, опциональное (peven)  *)
 (** Write a [While] program that sets [Z] to [0] if [X] is even and
     sets [Z] to [1] otherwise.  Use [ceval_test] to test your
     program. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (* ################################################################# *)
@@ -281,7 +281,7 @@ Proof.
           apply E_WhileFalse.
           rewrite <- Heqr. subst. reflexivity.  Qed.
 
-(** **** Exercise: 4 stars (ceval_step__ceval_inf)  *)
+(** **** Упражнение: 4 звезды (ceval_step__ceval_inf)  *)
 (** Write an informal proof of [ceval_step__ceval], following the
     usual template.  (The template for case analysis on an inductively
     defined value should look the same as for induction, except that
@@ -289,7 +289,7 @@ Proof.
     the main ideas to a human reader; do not simply transcribe the
     steps of the formal proof.
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 *)
 (** [] *)
 
@@ -337,7 +337,7 @@ induction i1 as [|i1']; intros i2 st st' c Hle Hceval.
       * (* i1'o = None *)
         simpl in Hceval. inversion Hceval.  Qed.
 
-(** **** Exercise: 3 stars, recommended (ceval__ceval_step)  *)
+(** **** Упражнение: 3 звезды, рекомендуется (ceval__ceval_step)  *)
 (** Finish the following proof.  You'll need [ceval_step_more] in a
     few places, as well as some basic facts about [<=] and [plus]. *)
 
@@ -347,7 +347,7 @@ Theorem ceval__ceval_step: forall c st st',
 Proof.
   intros c st st' Hce.
   induction Hce.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 Theorem ceval_and_ceval_step_coincide: forall c st st',

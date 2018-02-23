@@ -1,27 +1,27 @@
-(** * Lists: Working with Structured Data *)
+(** * Списки: работа со структурированными данными *)
 
 Require Export Induction.
 Module NatList.
 
 (* ################################################################# *)
-(** * Pairs of Numbers *)
+(** * Пары чисел *)
 
-(** In an [Inductive] type definition, each constructor can take
-    any number of arguments -- none (as with [true] and [O]), one (as
-    with [S]), or more than one, as here: *)
+(** Когда мы определяем тип, используя команду [Inductive], каждый 
+    конструктор может принимать любое число аргументов -- ни одного
+    (как [true] или [O]), один (как [S]), или больше, например: *)
 
 Inductive natprod : Type :=
 | pair : nat -> nat -> natprod.
 
-(** This declaration can be read: "There is just one way to
-    construct a pair of numbers: by applying the constructor [pair] to
-    two arguments of type [nat]." *)
+(** Это определение можно прочесть следующим образом: "существует
+    только один способ задать пару чисел: применить конструктор [pair]
+    к двум аргументам типа [nat]." *)
 
 Check (pair 3 5).
 
-(** Here are two simple functions for extracting the first and
-    second components of a pair.  The definitions also illustrate how
-    to do pattern matching on two-argument constructors. *)
+(** Вот две простых функции для извлечения первого и второго компонента
+    пары. Определения иллюстрируют, как выполнять соспоставление с
+    образцом для конструкторов с несколькими аргументами. *)
 
 Definition fst (p : natprod) : nat :=
   match p with
@@ -36,18 +36,16 @@ Definition snd (p : natprod) : nat :=
 Compute (fst (pair 3 5)).
 (* ===> 3 *)
 
-(** Since pairs are used quite a bit, it is nice to be able to
-    write them with the standard mathematical notation [(x,y)] instead
-    of [pair x y].  We can tell Coq to allow this with a [Notation]
-    declaration. *)
+(** Так как пары используются довольно часто, будет неплохо записывать
+    их в стандартной математической нотации [(x,y)], а не [pair x y].
+    Мы можем достичь этого командой [Notation]. *)
 
 Notation "( x , y )" := (pair x y).
 
-(** The new pair notation can be used both in expressions and in
-    pattern matches (indeed, we've actually seen this already in the
-    [Basics] chapter, in the definition of the [minus] function --
-    this works because the pair notation is also provided as part of
-    the standard library): *)
+(** Эту новую нотацию для пар можно использовать и в выражениях, и
+    при сопоставлении с образцом (разумеется, мы уже видели это в
+    главе [Основы], при опредлении функции [minus] -- это работает,
+    потому что нотация для пар включена в стандартную библиотеку): *)
 
 Compute (fst (3,5)).
 
@@ -66,120 +64,118 @@ Definition swap_pair (p : natprod) : natprod :=
   | (x,y) => (y,x)
   end.
 
-(** Let's try to prove a few simple facts about pairs.
+(** Давайте попробуем доказать несколько простых фактов о парах.
 
-    If we state things in a particular (and slightly peculiar) way, we
-    can complete proofs with just reflexivity (and its built-in
-    simplification): *)
+    Если мы сформулируем теорему в определенном (необычном) виде,
+    мы можем завершить доказательство командой [reflexivity] (и ее
+    способностями к упрощению): *)
 
 Theorem surjective_pairing' : forall (n m : nat),
   (n,m) = (fst (n,m), snd (n,m)).
 Proof.
   reflexivity.  Qed.
 
-(** But [reflexivity] is not enough if we state the lemma in a more
-    natural way: *)
+(** Но [reflexivity] не поможет, если лемма сформулированна более
+    естественным образом: *)
 
 Theorem surjective_pairing_stuck : forall (p : natprod),
   p = (fst p, snd p).
 Proof.
-  simpl. (* Doesn't reduce anything! *)
+  simpl. (* Ничего не делает! *)
 Abort.
 
-(** We have to expose the structure of [p] so that [simpl] can
-    perform the pattern match in [fst] and [snd].  We can do this with
-    [destruct]. *)
+(** Нам нужно раскрыть структуру [p], чтобы тактика [simpl] могла
+    выполнить сопоставление с образцом в [fst] и [snd]. Мы можем сделать
+    это с помощью [destruct]. *)
 
 Theorem surjective_pairing : forall (p : natprod),
   p = (fst p, snd p).
 Proof.
   intros p.  destruct p as [n m].  simpl.  reflexivity.  Qed.
 
-(** Notice that, unlike its behavior with [nat]s, [destruct]
-    generates just one subgoal here.  That's because [natprod]s can
-    only be constructed in one way. *)
+(** Заметьте, что в отличие от случая с натуральными числами,
+    [destruct] порождает только одну подцель. Это происходит из-за 
+    того, что объект [natprod] может быть задан единственным образом. *)
 
-(** **** Exercise: 1 star (snd_fst_is_swap)  *)
+(** **** Упражнение: 1 звезда (snd_fst_is_swap)  *)
 Theorem snd_fst_is_swap : forall (p : natprod),
   (snd p, fst p) = swap_pair p.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 1 star, optional (fst_swap_is_snd)  *)
+(** **** Упражнение: 1 звезда, опциональное (fst_swap_is_snd)  *)
 Theorem fst_swap_is_snd : forall (p : natprod),
   fst (swap_pair p) = snd p.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ################################################################# *)
-(** * Lists of Numbers *)
+(** * Списки чисел *)
 
-(** Generalizing the definition of pairs, we can describe the
-    type of _lists_ of numbers like this: "A list is either the empty
-    list or else a pair of a number and another list." *)
+(** Обобщая определние пар мы можем описать тип _списков_ чисел
+    следующим образом: "Список либо пуст, либо это пара из числа и
+    другого списка" *)
 
 Inductive natlist : Type :=
   | nil  : natlist
   | cons : nat -> natlist -> natlist.
 
-(** For example, here is a three-element list: *)
+(** Например, список из трех элементов: *)
 
 Definition mylist := cons 1 (cons 2 (cons 3 nil)).
 
-(** As with pairs, it is more convenient to write lists in
-    familiar programming notation.  The following declarations
-    allow us to use [::] as an infix [cons] operator and square
-    brackets as an "outfix" notation for constructing lists. *)
+(** Как и с парами, удобнее будет использовать знакомую по другим
+    языкам программирования нотацию для списков. Следующие определения
+    позволяют использовать [::] как инфиксный оператор вместо [cons],
+    и квадратные скобки как "внешний" оператор для списков. *)
 
 Notation "x :: l" := (cons x l)
                      (at level 60, right associativity).
 Notation "[ ]" := nil.
 Notation "[ x ; .. ; y ]" := (cons x .. (cons y nil) ..).
 
-(** It is not necessary to understand the details of these
-    declarations, but in case you are interested, here is roughly
-    what's going on.  The [right associativity] annotation tells Coq
-    how to parenthesize expressions involving several uses of [::] so
-    that, for example, the next three declarations mean exactly the
-    same thing: *)
+(** Не обязательно понимать все подробности этих определений, но если
+    вы заинтересованы, вот что происходит. Аннотация [right 
+    associativity] сообщает Coq, как следует читать выражения,
+    включающие несколько применений оператора [::], так что, например,
+    следующие записи означают одно и то же: *)
 
 Definition mylist1 := 1 :: (2 :: (3 :: nil)).
 Definition mylist2 := 1 :: 2 :: 3 :: nil.
 Definition mylist3 := [1;2;3].
 
-(** The [at level 60] part tells Coq how to parenthesize
-    expressions that involve both [::] and some other infix operator.
-    For example, since we defined [+] as infix notation for the [plus]
-    function at level 50,
+(** Часть [at level 60] говорит Coq, как читать выражения, включающие
+    [::] и другие инфиксные операторы. Например, так как мы определили
+    [+] в качестве инфиксной нотации для [plus] с уровнем 50:
 
-  Notation "x + y" := (plus x y)
+    Notation "x + y" := (plus x y)
                       (at level 50, left associativity).
 
-   the [+] operator will bind tighter than [::], so [1 + 2 :: [3]]
-   will be parsed, as we'd expect, as [(1 + 2) :: [3]] rather than [1
-   + (2 :: [3])].
+    оператор [+] имеет более высокий приоритет, чем [::], так что 
+    выражение [1 + 2 :: [3]] будет прочитано как [(1 + 2) :: [3]],
+    а не [1 + (2 :: [3])].
 
-   (Expressions like "[1 + 2 :: [3]]" can be a little confusing when
-   you read them in a .v file.  The inner brackets, around 3, indicate
-   a list, but the outer brackets, which are invisible in the HTML
-   rendering, are there to instruct the "coqdoc" tool that the bracketed
-   part should be displayed as Coq code rather than running text.)
+    (Выражения, подобные "[1 + 2 :: [3]]" могут сбивать с толку когда
+    вы читаете их в файле .v. Внутрение скобки вокруг 3 обозначают
+    список, в то время как внешние скобки, которые не видно в HTML,
+    служат инструкцией для "coqdoc", что их содержимое следует 
+    отображать как Coq, а не обычный текст.)
 
-   The second and third [Notation] declarations above introduce the
-   standard square-bracket notation for lists; the right-hand side of
-   the third one illustrates Coq's syntax for declaring n-ary
-   notations and translating them to nested sequences of binary
-   constructors. *)
+    Вторая и третья команды [Notation] определяют стандартную запись
+    для списков с использованием квадратных скобок. Правая часть
+    третьей нотации иллюстрирует синтаксис Coq для n-арной нотации
+    и преобразования ее во вложенную последовательность бинарных
+    конструкторов. *)
 
 (* ----------------------------------------------------------------- *)
-(** *** Repeat *)
+(** *** Повтор *)
 
-(** A number of functions are useful for manipulating lists.
-    For example, the [repeat] function takes a number [n] and a
-    [count] and returns a list of length [count] where every element
-    is [n]. *)
+(** Множество функций полезны при работе со списками. Например, функция
+    [repeat] (повторить) принимает число [n] и число [count], и 
+    возвращает список длиной [count], в котором каждый элемент равен
+    [n]. *)
 
 Fixpoint repeat (n count : nat) : natlist :=
   match count with
@@ -188,9 +184,9 @@ Fixpoint repeat (n count : nat) : natlist :=
   end.
 
 (* ----------------------------------------------------------------- *)
-(** *** Length *)
+(** *** Длина *)
 
-(** The [length] function calculates the length of a list. *)
+(** Функция [length] (длина) подсчитывает длину списка. *)
 
 Fixpoint length (l:natlist) : nat :=
   match l with
@@ -199,9 +195,9 @@ Fixpoint length (l:natlist) : nat :=
   end.
 
 (* ----------------------------------------------------------------- *)
-(** *** Append *)
+(** *** Конкатенация *)
 
-(** The [app] function concatenates (appends) two lists. *)
+(** Функция [app] (конкатенация) соединяет два списка. *)
 
 Fixpoint app (l1 l2 : natlist) : natlist :=
   match l1 with
@@ -209,8 +205,9 @@ Fixpoint app (l1 l2 : natlist) : natlist :=
   | h :: t => h :: (app t l2)
   end.
 
-(** Actually, [app] will be used a lot in some parts of what
-    follows, so it is convenient to have an infix operator for it. *)
+(** На самом деле, функция [app] будет использоваться много раз в
+    следующих частях, так что будет полезным задать для нее инфиксный
+    оператор. *)
 
 Notation "x ++ y" := (app x y)
                      (right associativity, at level 60).
@@ -223,14 +220,14 @@ Example test_app3:             [1;2;3] ++ nil = [1;2;3].
 Proof. reflexivity.  Qed.
 
 (* ----------------------------------------------------------------- *)
-(** *** Head (with default) and Tail *)
+(** *** Голова (со значением по умолчанию) и хвост *)
 
-(** Here are two smaller examples of programming with lists.
-    The [hd] function returns the first element (the "head") of the
-    list, while [tl] returns everything but the first
-    element (the "tail").
-    Of course, the empty list has no first element, so we
-    must pass a default value to be returned in that case.  *)
+(** Вот два небольших примера программирования на списках.
+    Функция [hd] возвращает первый элемент ("голову") списка, а [tl]
+    возвращает все, кроме первого элемента ("хвост"). Конечно же,
+    пустой список не имеет первого элемента, так что мы должны
+    передать значение по умолчанию, которое следует вернуть в этом
+    случае. *)
 
 Definition hd (default:nat) (l:natlist) : nat :=
   match l with
@@ -253,196 +250,199 @@ Proof. reflexivity.  Qed.
 
 
 (* ----------------------------------------------------------------- *)
-(** *** Exercises *)
+(** *** Упражнения *)
 
-(** **** Exercise: 2 stars, recommended (list_funs)  *)
-(** Complete the definitions of [nonzeros], [oddmembers] and
-    [countoddmembers] below. Have a look at the tests to understand
-    what these functions should do. *)
+(** **** Упражнение: 2 звезды, рекомендуется (list_funs)  *)
+(** Заполните определения функций [nonzeros] (не нули), [oddmembers]
+    (нечетные члены) и [countoddmemeber] (посчитать нечетные члены) 
+    ниже. Взгляните на тесты, чтобы понять, что эти функции должны 
+    делать. *)
 
 Fixpoint nonzeros (l:natlist) : natlist
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_nonzeros:
   nonzeros [0;1;0;2;3;0;0] = [1;2;3].
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: NatList.test_nonzeros *)
 
 Fixpoint oddmembers (l:natlist) : natlist
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_oddmembers:
   oddmembers [0;1;0;2;3;0;0] = [1;3].
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: NatList.test_oddmembers *)
 
 Definition countoddmembers (l:natlist) : nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_countoddmembers1:
   countoddmembers [1;0;3;1;4;5] = 4.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_countoddmembers2:
   countoddmembers [0;2;4] = 0.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_countoddmembers3:
   countoddmembers nil = 0.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, advanced (alternate)  *)
-(** Complete the definition of [alternate], which "zips up" two lists
-    into one, alternating between elements taken from the first list
-    and elements from the second.  See the tests below for more
-    specific examples.
+(** **** Упражнение: 3 звезды, продвинутое (alternate)  *)
+(** Заполните определение [alternate], которое перемежает два списка
+    в один, по очереди беря элементы из первого и второго списка.
+    Посмотрите на тесты ниже, чтобы получить конкретные примеры.
 
-    Note: one natural and elegant way of writing [alternate] will fail
-    to satisfy Coq's requirement that all [Fixpoint] definitions be
-    "obviously terminating."  If you find yourself in this rut, look
-    for a slightly more verbose solution that considers elements of
-    both lists at the same time.  (One possible solution requires
-    defining a new kind of pairs, but this is not the only way.)  *)
+    Заметьте, что естественный и элегантный способ записи функции
+    [alternative] не пройдет проверку Coq на "завершимость" всех
+    функций. Если вы обнаружите себя в этой ситуации, попробуйте найти
+    более подробное решение, которое рассматривает оба списка 
+    одновременно. (Одно из возможных решений требует определить новый
+    тип пар, однако это не единственный путь.) *)
 
 Fixpoint alternate (l1 l2 : natlist) : natlist
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_alternate1:
   alternate [1;2;3] [4;5;6] = [1;4;2;5;3;6].
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_alternate2:
   alternate [1] [4;5;6] = [1;4;5;6].
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_alternate3:
   alternate [1;2;3] [4] = [1;4;2;3].
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_alternate4:
   alternate [] [20;30] = [20;30].
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ----------------------------------------------------------------- *)
-(** *** Bags via Lists *)
+(** *** Мультимножества как списки *)
 
-(** A [bag] (or [multiset]) is like a set, except that each element
-    can appear multiple times rather than just once.  One possible
-    implementation is to represent a bag of numbers as a list. *)
+(** Мультимножество ([bag]) похоже на множество, но каждый элемент
+    в нем может появляться много раз. Одна из возможных реализаций --
+    представить мультимножество чисел как список. *)
 
 Definition bag := natlist.
 
-(** **** Exercise: 3 stars, recommended (bag_functions)  *)
-(** Complete the following definitions for the functions
-    [count], [sum], [add], and [member] for bags. *)
+(** **** Упражнение: 3 звезды, рекомендуется (bag_functions)  *)
+(** Заполните следующие определения функций [count](количество),
+    [sum](сумма), [add](добавить) и [member](член) для 
+    мультимножеств. *)
 
 Fixpoint count (v:nat) (s:bag) : nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
-(** All these proofs can be done just by [reflexivity]. *)
+(** Все следующие доказательства могут быть завершены при помощи
+    одной команды [reflexivity]. *)
 
 Example test_count1:              count 1 [1;2;3;1;4;1] = 3.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 Example test_count2:              count 6 [1;2;3;1;4;1] = 0.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: NatList.test_count2 *)
 
-(** Multiset [sum] is similar to set [union]: [sum a b] contains all
-    the elements of [a] and of [b].  (Mathematicians usually define
-    [union] on multisets a little bit differently -- using max instead
-    of sum -- which is why we don't use that name for this operation.)
-    For [sum] we're giving you a header that does not give explicit
-    names to the arguments.  Moreover, it uses the keyword
-    [Definition] instead of [Fixpoint], so even if you had names for
-    the arguments, you wouldn't be able to process them recursively.
-    The point of stating the question this way is to encourage you to
-    think about whether [sum] can be implemented in another way --
-    perhaps by using functions that have already been defined.  *)
+(** Сумма мультимножеств ([sum]) похожа на объединение множеств:
+    [sum a b] содержит все элементы [a] и [b]. (Математики обычно
+    определяют объединение мультимножеств немного иначе -- используя
+    максимум вместо суммы -- и поэтому мы не называем нашу операцию
+    объединением.) Для функции [sum] мы записали заголовок, который
+    не дает явные имена аргументам. Более того, мы использовали 
+    команду [Definition] вместо [Fixpoint], так что даже если бы у вас
+    были имена аргументов, вы бы не могли обработать их рекурсивно.
+    Смысл такого ограничения в том, чтобы подтолкнуть вас к идее
+    о том, каким еще образом можно определить функцию [sum] --
+    возможно, используя те функции, которые мы уже определили. *)
 
 Definition sum : bag -> bag -> bag
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_sum1:              count 1 (sum [1;2;3] [1;4;1]) = 3.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: NatList.test_sum1 *)
 
 Definition add (v:nat) (s:bag) : bag
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_add1:                count 1 (add 1 [1;4;1]) = 3.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 Example test_add2:                count 5 (add 1 [1;4;1]) = 0.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: NatList.test_add1 *)
 (* GRADE_THEOREM 0.5: NatList.test_add2 *)
 
 Definition member (v:nat) (s:bag) : bool
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_member1:             member 1 [1;4;1] = true.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: NatList.test_member1 *)
 (* GRADE_THEOREM 0.5: NatList.test_member2 *)
 
 Example test_member2:             member 2 [1;4;1] = false.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, optional (bag_more_functions)  *)
-(** Here are some more bag functions for you to practice with. *)
+(** **** Упражнение: 3 звезды, опциональное (bag_more_functions)  *)
+(** Еще несколько функций над мультимножествами, чтобы 
+    попрактиковаться. *)
 
-(** When remove_one is applied to a bag without the number to remove,
-   it should return the same bag unchanged. *)
+(** Когда к мультимножеству, в котором нет элемента, применена функция 
+    [remove_one] (удалить_один), оно должно остаться без изменений. *)
 
 Fixpoint remove_one (v:nat) (s:bag) : bag
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_remove_one1:
   count 5 (remove_one 5 [2;1;5;4;1]) = 0.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_remove_one2:
   count 5 (remove_one 5 [2;1;4;1]) = 0.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_remove_one3:
   count 4 (remove_one 5 [2;1;4;5;1;4]) = 2.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_remove_one4:
   count 5 (remove_one 5 [2;1;5;4;5;1;4]) = 1.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
-Fixpoint remove_all (v:nat) (s:bag) : bag
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Fixpoint remove_all (v:nat) (s:bag) : bag (* удалить_все *)
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_remove_all1:  count 5 (remove_all 5 [2;1;5;4;1]) = 0.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 Example test_remove_all2:  count 5 (remove_all 5 [2;1;4;1]) = 0.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 Example test_remove_all3:  count 4 (remove_all 5 [2;1;4;5;1;4]) = 2.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 Example test_remove_all4:  count 5 (remove_all 5 [2;1;5;4;5;1;4;5;1;4]) = 0.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 
-Fixpoint subset (s1:bag) (s2:bag) : bool
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Fixpoint subset (s1:bag) (s2:bag) : bool (* подмножество *)
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_subset1:              subset [1;2] [2;1;4;1] = true.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 Example test_subset2:              subset [1;2;2] [2;1;4;1] = false.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, recommended (bag_theorem)  *)
-(** Write down an interesting theorem [bag_theorem] about bags
-    involving the functions [count] and [add], and prove it.  Note
-    that, since this problem is somewhat open-ended, it's possible
-    that you may come up with a theorem which is true, but whose proof
-    requires techniques you haven't learned yet.  Feel free to ask for
-    help if you get stuck! *)
+(** **** Упражнение: 3 звезды, рекомендуется (bag_theorem)  *)
+(** Запишите интересную теорему о мультимножествах [bag_theorem],
+    включающую функции [count] и [add], и докажите ее. Заметьте, что
+    так как вы не ограничены в этой задача, может оказаться, что вы
+    получите верную теорему, для доказательства которой потребуются
+    техники, которые вы еще не изучили. Не стесняйтесь просить помощи,
+    если застрянете! *)
 
 (*
 Theorem bag_theorem : ...
@@ -765,25 +765,25 @@ Proof.
 (* ================================================================= *)
 (** ** List Exercises, Part 1 *)
 
-(** **** Exercise: 3 stars (list_exercises)  *)
+(** **** Упражнение: 3 звезды (list_exercises)  *)
 (** More practice with lists: *)
 
 Theorem app_nil_r : forall l : natlist,
   l ++ [] = l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: NatList.app_nil_r *)
 
 Theorem rev_app_distr: forall l1 l2 : natlist,
   rev (l1 ++ l2) = rev l2 ++ rev l1.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: NatList.rev_app_distr *)
 
 Theorem rev_involutive : forall l : natlist,
   rev (rev l) = l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: NatList.rev_involutive *)
 
 (** There is a short solution to the next one.  If you find yourself
@@ -793,7 +793,7 @@ Proof.
 Theorem app_assoc4 : forall l1 l2 l3 l4 : natlist,
   l1 ++ (l2 ++ (l3 ++ l4)) = ((l1 ++ l2) ++ l3) ++ l4.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: NatList.app_assoc4 *)
 
 (** An exercise about your implementation of [nonzeros]: *)
@@ -801,33 +801,33 @@ Proof.
 Lemma nonzeros_app : forall l1 l2 : natlist,
   nonzeros (l1 ++ l2) = (nonzeros l1) ++ (nonzeros l2).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 2 stars (beq_natlist)  *)
+(** **** Упражнение: 2 звезды (beq_natlist)  *)
 (** Fill in the definition of [beq_natlist], which compares
     lists of numbers for equality.  Prove that [beq_natlist l l]
     yields [true] for every list [l]. *)
 
 Fixpoint beq_natlist (l1 l2 : natlist) : bool
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_beq_natlist1 :
   (beq_natlist nil nil = true).
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_beq_natlist2 :
   beq_natlist [1;2;3] [1;2;3] = true.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_beq_natlist3 :
   beq_natlist [1;2;3] [1;2;4] = false.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem beq_natlist_refl : forall l:natlist,
   true = beq_natlist l l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ================================================================= *)
@@ -836,11 +836,11 @@ Proof.
 (** Here are a couple of little theorems to prove about your
     definitions about bags above. *)
 
-(** **** Exercise: 1 star (count_member_nonzero)  *)
+(** **** Упражнение: 1 звезда (count_member_nonzero)  *)
 Theorem count_member_nonzero : forall (s : bag),
   leb 1 (count 1 (1 :: s)) = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** The following lemma about [leb] might help you in the next exercise. *)
@@ -854,29 +854,29 @@ Proof.
   - (* S n' *)
     simpl.  rewrite IHn'.  reflexivity.  Qed.
 
-(** **** Exercise: 3 stars, advanced (remove_decreases_count)  *)
+(** **** Упражнение: 3 звезды, продвинутое (remove_decreases_count)  *)
 Theorem remove_decreases_count: forall (s : bag),
   leb (count 0 (remove_one 0 s)) (count 0 s) = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, optional (bag_count_sum)  *)
+(** **** Упражнение: 3 звезды, опциональное (bag_count_sum)  *)
 (** Write down an interesting theorem [bag_count_sum] about bags
     involving the functions [count] and [sum], and prove it using
     Coq.  (You may find that the difficulty of the proof depends on
     how you defined [count]!) *)
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 4 stars, advanced (rev_injective)  *)
+(** **** Упражнение: 4 звезды, продвинутое (rev_injective)  *)
 (** Prove that the [rev] function is injective -- that is,
 
     forall (l1 l2 : natlist), rev l1 = rev l2 -> l1 = l2.
 
 (There is a hard way and an easy way to do this.) *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (* ################################################################# *)
@@ -960,30 +960,30 @@ Definition option_elim (d : nat) (o : natoption) : nat :=
   | None => d
   end.
 
-(** **** Exercise: 2 stars (hd_error)  *)
+(** **** Упражнение: 2 звезды (hd_error)  *)
 (** Using the same idea, fix the [hd] function from earlier so we don't
     have to pass a default element for the [nil] case.  *)
 
 Definition hd_error (l : natlist) : natoption
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example test_hd_error1 : hd_error [] = None.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_hd_error2 : hd_error [1] = Some 1.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 
 Example test_hd_error3 : hd_error [5;6] = Some 5.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 1 star, optional (option_elim_hd)  *)
+(** **** Упражнение: 1 звезда, опциональное (option_elim_hd)  *)
 (** This exercise relates your new [hd_error] to the old [hd]. *)
 
 Theorem option_elim_hd : forall (l:natlist) (default:nat),
   hd default l = option_elim default (hd_error l).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 End NatList.
@@ -1014,10 +1014,10 @@ Definition beq_id (x1 x2 : id) :=
   | Id n1, Id n2 => beq_nat n1 n2
   end.
 
-(** **** Exercise: 1 star (beq_id_refl)  *)
+(** **** Упражнение: 1 звезда (beq_id_refl)  *)
 Theorem beq_id_refl : forall x, true = beq_id x x.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (** Now we define the type of partial maps: *)
@@ -1059,24 +1059,24 @@ Fixpoint find (x : id) (d : partial_map) : natoption :=
   end.
 
 
-(** **** Exercise: 1 star (update_eq)  *)
+(** **** Упражнение: 1 звезда (update_eq)  *)
 Theorem update_eq :
   forall (d : partial_map) (x : id) (v: nat),
     find x (update d x v) = Some v.
 Proof.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 1 star (update_neq)  *)
+(** **** Упражнение: 1 звезда (update_neq)  *)
 Theorem update_neq :
   forall (d : partial_map) (x y : id) (o: nat),
     beq_id x y = false -> find x (update d y o) = find x d.
 Proof.
- (* FILL IN HERE *) Admitted.
+ (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 End PartialMap.
 
-(** **** Exercise: 2 stars (baz_num_elts)  *)
+(** **** Упражнение: 2 звезды (baz_num_elts)  *)
 (** Consider the following inductive definition: *)
 
 Inductive baz : Type :=
@@ -1086,7 +1086,7 @@ Inductive baz : Type :=
 (** How _many_ elements does the type [baz] have?
     (Explain your answer in words, preferrably English.)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 *)
 (** [] *)
 

@@ -433,7 +433,7 @@ Qed.
     process diverges, this simply means that we have failed to
     construct a proof, not that we have constructed a wrong one. *)
 
-(** **** Exercise: 3 stars (optimize_0plus_b_sound)  *)
+(** **** Упражнение: 3 звезды (optimize_0plus_b_sound)  *)
 (** Since the [optimize_0plus] transformation doesn't change the value
     of [aexp]s, we should be able to apply it to all the [aexp]s that
     appear in a [bexp] without changing the [bexp]'s value.  Write a
@@ -442,15 +442,15 @@ Qed.
     as elegant as possible. *)
 
 Fixpoint optimize_0plus_b (b : bexp) : bexp
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Theorem optimize_0plus_b_sound : forall b,
   beval (optimize_0plus_b b) = beval b.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 4 stars, optional (optimizer)  *)
+(** **** Упражнение: 4 звезды, опциональное (optimizer)  *)
 (** _Design exercise_: The optimization implemented by our
     [optimize_0plus] function is only one of many possible
     optimizations on arithmetic and boolean expressions.  Write a more
@@ -459,7 +459,7 @@ Proof.
     optimization and prove it correct -- and build up to something
     more interesting incrementially.)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 *)
 (** [] *)
 
@@ -746,18 +746,18 @@ Proof.
        try apply IHa1; try apply IHa2; reflexivity.
 Qed.
 
-(** **** Exercise: 3 stars (bevalR)  *)
+(** **** Упражнение: 3 звезды (bevalR)  *)
 (** Write a relation [bevalR] in the same style as
     [aevalR], and prove that it is equivalent to [beval].*)
 
 Inductive bevalR: bexp -> bool -> Prop :=
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 .
 
 Lemma beval_iff_bevalR : forall b bv,
   bevalR b bv <-> beval b = bv.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 End AExp.
@@ -1320,28 +1320,28 @@ Proof.
       reflexivity.
       apply E_Ass. reflexivity.  Qed.
 
-(** **** Exercise: 2 stars (ceval_example2)  *)
+(** **** Упражнение: 2 звезды (ceval_example2)  *)
 Example ceval_example2:
   (X ::= 0;; Y ::= 1;; Z ::= 2) / { --> 0 } \\
   { X --> 0 ; Y --> 1 ; Z --> 2 }.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, optional (pup_to_n)  *)
+(** **** Упражнение: 3 звезды, опциональное (pup_to_n)  *)
 (** Write an Imp program that sums the numbers from [1] to
    [X] (inclusive: [1 + 2 + ... + X]) in the variable [Y].
    Prove that this program executes as intended for [X] = [2]
    (this is trickier than you might expect). *)
 
 Definition pup_to_n : com
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Theorem pup_to_2_ceval :
   pup_to_n / { X --> 2 }
      \\ { X --> 2 ; Y --> 0 ; Y --> 2 ; X --> 1 ; Y --> 3 ; X --> 0 }.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
 (* ================================================================= *)
@@ -1417,13 +1417,13 @@ Proof.
   inversion Heval. subst. clear Heval. simpl.
   apply t_update_eq.  Qed.
 
-(** **** Exercise: 3 stars, recommended (XtimesYinZ_spec)  *)
+(** **** Упражнение: 3 звезды, рекомендуется (XtimesYinZ_spec)  *)
 (** State and prove a specification of [XtimesYinZ]. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
-(** **** Exercise: 3 stars, recommended (loop_never_stops)  *)
+(** **** Упражнение: 3 звезды, рекомендуется (loop_never_stops)  *)
 Theorem loop_never_stops : forall st st',
   ~(loop / st \\ st').
 Proof.
@@ -1436,10 +1436,10 @@ Proof.
       contradictory (and so can be solved in one step with
       [inversion]). *)
 
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars (no_whiles_eqv)  *)
+(** **** Упражнение: 3 звезды (no_whiles_eqv)  *)
 (** Consider the following function: *)
 
 Fixpoint no_whiles (c : com) : bool :=
@@ -1462,27 +1462,27 @@ Fixpoint no_whiles (c : com) : bool :=
     while loops.  Then prove its equivalence with [no_whiles]. *)
 
 Inductive no_whilesR: com -> Prop :=
- (* FILL IN HERE *)
+ (* ЗАПОЛНИТЕ *)
 .
 
 Theorem no_whiles_eqv:
    forall c, no_whiles c = true <-> no_whilesR c.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 4 stars (no_whiles_terminating)  *)
+(** **** Упражнение: 4 звезды (no_whiles_terminating)  *)
 (** Imp programs that don't involve while loops always terminate.
     State and prove a theorem [no_whiles_terminating] that says this. *)
 (** Use either [no_whiles] or [no_whilesR], as you prefer. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (* ################################################################# *)
 (** * Additional Exercises *)
 
-(** **** Exercise: 3 stars (stack_compiler)  *)
+(** **** Упражнение: 3 звезды (stack_compiler)  *)
 (** Old HP Calculators, programming languages like Forth and Postscript,
     and abstract machines like the Java Virtual Machine all evaluate
     arithmetic expressions using a _stack_. For instance, the expression
@@ -1543,20 +1543,20 @@ Inductive sinstr : Type :=
 Fixpoint s_execute (st : state) (stack : list nat)
                    (prog : list sinstr)
                  : list nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 Example s_execute1 :
      s_execute { --> 0 } []
        [SPush 5; SPush 3; SPush 1; SMinus]
    = [2; 5].
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: s_execute1 *)
 
 Example s_execute2 :
      s_execute { X --> 3 } [3;4]
        [SPush 4; SLoad X; SMult; SPlus]
    = [15; 4].
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (* GRADE_THEOREM 0.5: s_execute2 *)
 
 (** Next, write a function that compiles an [aexp] into a stack
@@ -1564,7 +1564,7 @@ Example s_execute2 :
     same as pushing the value of the expression on the stack. *)
 
 Fixpoint s_compile (e : aexp) : list sinstr
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+  (* ЗАМЕНИТЕ ЭТУ СТРОКУ НА ":= _ваше определение_ ." *). Admitted.
 
 (** After you've defined [s_compile], prove the following to test
     that it works. *)
@@ -1572,10 +1572,10 @@ Fixpoint s_compile (e : aexp) : list sinstr
 Example s_compile1 :
   s_compile (X - (2 * Y))
   = [SLoad X; SPush 2; SLoad Y; SMult; SMinus].
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 4 stars, advanced (stack_compiler_correct)  *)
+(** **** Упражнение: 4 звезды, продвинутое (stack_compiler_correct)  *)
 (** Now we'll prove the correctness of the compiler implemented in the
     previous exercise.  Remember that the specification left
     unspecified what to do when encountering an [SPlus], [SMinus], or
@@ -1590,10 +1590,10 @@ Example s_compile1 :
 Theorem s_compile_correct : forall (st : state) (e : aexp),
   s_execute st [] (s_compile e) = [ aeval st e ].
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, optional (short_circuit)  *)
+(** **** Упражнение: 3 звезды, опциональное (short_circuit)  *)
 (** Most modern programming languages use a "short-circuit" evaluation
     rule for boolean [and]: to evaluate [BAnd b1 b2], first evaluate
     [b1].  If it evaluates to [false], then the entire [BAnd]
@@ -1605,11 +1605,11 @@ Proof.
     evaluation of [BAnd] in this manner, and prove that it is
     equivalent to [beval]. *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 Module BreakImp.
-(** **** Exercise: 4 stars, advanced (break_imp)  *)
+(** **** Упражнение: 4 звезды, продвинутое (break_imp)  *)
 (** Imperative languages like C and Java often include a [break] or
     similar statement for interrupting the execution of loops. In this
     exercise we consider how to add [break] to Imp.  First, we need to
@@ -1722,7 +1722,7 @@ Reserved Notation "c1 '/' st '\\' s '/' st'"
 Inductive ceval : com -> state -> result -> state -> Prop :=
   | E_Skip : forall st,
       CSkip / st \\ SContinue / st
-  (* FILL IN HERE *)
+  (* ЗАПОЛНИТЕ *)
 
   where "c1 '/' st '\\' s '/' st'" := (ceval c1 st s st').
 
@@ -1732,43 +1732,43 @@ Theorem break_ignore : forall c st st' s,
      (BREAK;; c) / st \\ s / st' ->
      st = st'.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem while_continue : forall b c st st' s,
   (WHILE b DO c END) / st \\ s / st' ->
   s = SContinue.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 Theorem while_stops_on_break : forall b c st st',
   beval st b = true ->
   c / st \\ SBreak / st' ->
   (WHILE b DO c END) / st \\ SContinue / st'.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars, advanced, optional (while_break_true)  *)
+(** **** Упражнение: 3 звезды, продвинутое, опциональное (while_break_true)  *)
 Theorem while_break_true : forall b c st st',
   (WHILE b DO c END) / st \\ SContinue / st' ->
   beval st' b = true ->
   exists st'', c / st'' \\ SBreak / st'.
 Proof.
-(* FILL IN HERE *) Admitted.
+(* ЗАПОЛНИТЕ *) Admitted.
 (** [] *)
 
-(** **** Exercise: 4 stars, advanced, optional (ceval_deterministic)  *)
+(** **** Упражнение: 4 звезды, продвинутое, опциональное (ceval_deterministic)  *)
 Theorem ceval_deterministic: forall (c:com) st st1 st2 s1 s2,
      c / st \\ s1 / st1  ->
      c / st \\ s2 / st2 ->
      st1 = st2 /\ s1 = s2.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* ЗАПОЛНИТЕ *) Admitted.
 
 (** [] *)
 End BreakImp.
 
-(** **** Exercise: 4 stars, optional (add_for_loop)  *)
+(** **** Упражнение: 4 звезды, опциональное (add_for_loop)  *)
 (** Add C-style [for] loops to the language of commands, update the
     [ceval] definition to define the semantics of [for] loops, and add
     cases for [for] loops as needed so that all the proofs in this
@@ -1782,7 +1782,7 @@ End BreakImp.
     about making up a concrete Notation for [for] loops, but feel free
     to play with this too if you like.) *)
 
-(* FILL IN HERE *)
+(* ЗАПОЛНИТЕ *)
 (** [] *)
 
 (** $Date: 2017-11-21 09:02:43 -0500 (Tue, 21 Nov 2017) $ *)
